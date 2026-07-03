@@ -1,7 +1,6 @@
 ---
-// Design 1a — 3-up projects grid: Mostro card + two dashed placeholders.
-// TODO: replace the placeholder cards with real projects (or remove them) before launch.
-const placeholders = ['more projects\ncoming soon', '[ placeholder ]'];
+// Design 1a — projects grid: Mostro card + a dashed "coming soon" slot.
+const upcoming = ['More projects\ncoming soon'];
 ---
 
 <section class="projects" id="projects">
@@ -36,7 +35,7 @@ const placeholders = ['more projects\ncoming soon', '[ placeholder ]'];
         <span class="link">mostro.network →</span>
       </a>
       {
-        placeholders.map((text) => (
+        upcoming.map((text) => (
           <div class="card placeholder" data-reveal>
             <svg
               width="26"
@@ -87,7 +86,7 @@ const placeholders = ['more projects\ncoming soon', '[ placeholder ]'];
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 16px;
   }
 

@@ -1,7 +1,6 @@
 ---
-// Design 1b — bento grid: large featured Mostro tile (spans 2 rows) + 2 small tiles.
-// TODO: replace the placeholder tiles with real projects (or remove them) before launch.
-const placeholders = ['more projects\ncoming soon', '[ placeholder ]'];
+// Design 1b — bento grid: large featured Mostro tile + a dashed "coming soon" slot.
+const upcoming = ['More projects\ncoming soon'];
 ---
 
 <section class="projects" id="projects">
@@ -42,7 +41,7 @@ const placeholders = ['more projects\ncoming soon', '[ placeholder ]'];
         </div>
       </a>
       {
-        placeholders.map((text) => (
+        upcoming.map((text) => (
           <div class="card placeholder" data-reveal>
             <div class="placeholder-text">{text}</div>
           </div>
@@ -85,7 +84,6 @@ const placeholders = ['more projects\ncoming soon', '[ placeholder ]'];
   }
 
   .featured {
-    grid-row: span 2;
     display: block;
     background: linear-gradient(160deg, var(--surface), var(--surface-2));
     border-radius: 18px;
@@ -157,6 +155,7 @@ const placeholders = ['more projects\ncoming soon', '[ placeholder ]'];
     flex-direction: column;
     justify-content: center;
     color: var(--muted-2);
+    align-self: stretch;
   }
 
   .placeholder-text {
@@ -168,10 +167,6 @@ const placeholders = ['more projects\ncoming soon', '[ placeholder ]'];
   @media (max-width: 900px) {
     .grid {
       grid-template-columns: 1fr;
-    }
-
-    .featured {
-      grid-row: auto;
     }
   }
 </style>
