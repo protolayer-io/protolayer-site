@@ -1,0 +1,23 @@
+---
+// Design 1b "Layered / Bold" — giant display, animated layers, emerald CTA.
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/layered-bold/Hero.astro';
+import Principles from '../components/layered-bold/Principles.astro';
+import About from '../components/layered-bold/About.astro';
+import Projects from '../components/layered-bold/Projects.astro';
+import ContactCta from '../components/layered-bold/ContactCta.astro';
+---
+
+<Base>
+  <Nav showThemeLabel />
+  <main>
+    <Hero />
+    <Principles />
+    <About />
+    <Projects />
+    <ContactCta />
+  </main>
+  <Footer variant="legal" />
+</Base>

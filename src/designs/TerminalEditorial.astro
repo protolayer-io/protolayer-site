@@ -1,0 +1,23 @@
+---
+// Design 1a "Terminal Editorial" — sober, structural, terminal-forward.
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/terminal-editorial/Hero.astro';
+import Principles from '../components/terminal-editorial/Principles.astro';
+import About from '../components/terminal-editorial/About.astro';
+import Projects from '../components/terminal-editorial/Projects.astro';
+import ContactLegal from '../components/terminal-editorial/ContactLegal.astro';
+---
+
+<Base>
+  <Nav />
+  <main>
+    <Hero />
+    <Principles />
+    <About />
+    <Projects />
+    <ContactLegal />
+  </main>
+  <Footer variant="simple" />
+</Base>

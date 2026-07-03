@@ -1,0 +1,107 @@
+---
+// Animated terminal card — the brand signature, shared by both designs.
+// The terminal is always dark, in both themes, so its inner colors are literal.
+---
+
+<div class="terminal" data-reveal>
+  <div class="terminal-header">
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot dot-active"></span>
+    <span class="terminal-title">protolayer — zsh</span>
+  </div>
+  <div class="terminal-body" data-terminal-body></div>
+</div>
+
+<style>
+  .terminal {
+    background: #080b0c;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+    text-align: left;
+  }
+
+  .terminal-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 15px;
+    background: #0c1113;
+    border-bottom: 1px solid #16211f;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #2a3a3c;
+  }
+
+  .dot-active {
+    background: #10b77f;
+  }
+
+  .terminal-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: #62777a;
+    margin-left: 8px;
+  }
+
+  .terminal-body {
+    padding: 20px 18px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    line-height: 1.95;
+    min-height: 210px;
+    color: #b4c4c6;
+    white-space: pre-wrap;
+  }
+</style>
+
+<script>
+  const TYPE_START_DELAY_MS = 700;
+  const TYPE_LINE_INTERVAL_MS = 520;
+
+  // Pre-painted lines (syntax colors per the design spec).
+  const TYPED_LINES = [
+    '<span style="color:#10B77F">➜</span> <span style="color:#5F9AA0">~/protolayer</span> <span style="color:#E9EFEF">git:(</span><span style="color:#2DD49A">main</span><span style="color:#E9EFEF">)</span> npm run build',
+    '<span style="color:#62777A">› building modular layers…</span>',
+    '  <span style="color:#2DD49A">✓</span> core-protocol    <span style="color:#62777A">ready in 240ms</span>',
+    '  <span style="color:#2DD49A">✓</span> infra-adapter    <span style="color:#62777A">ready in 180ms</span>',
+    '  <span style="color:#2DD49A">✓</span> mostro-bridge    <span style="color:#62777A">ready in 310ms</span>',
+    'build complete · <span style="color:#2DD49A">3 layers</span> online',
+  ];
+
+  const CURSOR_HTML =
+    '<span style="display:inline-block;width:8px;height:15px;background:#10B77F;vertical-align:-2px;animation:pl-blink 1.1s steps(1) infinite;"></span>';
+  const PROMPT_HTML = `<div><span style="color:#10B77F">$</span> ${CURSOR_HTML}</div>`;
+
+  const prefersReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll('[data-terminal-body]').forEach((terminal) => {
+    if (prefersReducedMotion) {
+      // No typing animation: render the final state immediately.
+      terminal.innerHTML = TYPED_LINES.map((line) => `<div>${line}</div>`).join('') + PROMPT_HTML;
+      return;
+    }
+
+    let lineIndex = 0;
+    const typeNextLine = () => {
+      if (lineIndex >= TYPED_LINES.length) {
+        terminal.innerHTML += PROMPT_HTML;
+        return;
+      }
+      const line = document.createElement('div');
+      line.style.animation = 'pl-slide-in 0.25s ease';
+      line.innerHTML = TYPED_LINES[lineIndex];
+      terminal.appendChild(line);
+      lineIndex++;
+      setTimeout(typeNextLine, TYPE_LINE_INTERVAL_MS);
+    };
+
+    setTimeout(typeNextLine, TYPE_START_DELAY_MS);
+  });
+</script>

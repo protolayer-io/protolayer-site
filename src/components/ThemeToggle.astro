@@ -1,0 +1,71 @@
+---
+interface Props {
+  showLabel?: boolean;
+}
+
+const { showLabel = false } = Astro.props;
+---
+
+<button class="theme-toggle" data-theme-toggle aria-label="Toggle color theme">
+  <span data-theme-icon>☾</span>
+  {showLabel && <span data-theme-label>dark</span>}
+</button>
+
+<style>
+  .theme-toggle {
+    cursor: pointer;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 6px 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    transition:
+      border-color 0.2s,
+      color 0.2s;
+  }
+
+  .theme-toggle:hover {
+    border-color: var(--brand);
+    color: var(--brand-2);
+  }
+</style>
+
+<script>
+  const STORAGE_KEY = 'theme';
+  const root = document.documentElement;
+
+  const currentTheme = () => (root.getAttribute('data-theme') === 'light' ? 'light' : 'dark');
+
+  const syncButtons = () => {
+    const mode = currentTheme();
+    document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
+      const icon = button.querySelector('[data-theme-icon]');
+      const label = button.querySelector('[data-theme-label]');
+      if (icon) icon.textContent = mode === 'light' ? '☀' : '☾';
+      if (label) label.textContent = mode;
+    });
+  };
+
+  document.querySelectorAll('[data-theme-toggle]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const next = currentTheme() === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem(STORAGE_KEY, next);
+      syncButtons();
+    });
+  });
+
+  // Follow OS theme changes while the user has not chosen manually.
+  matchMedia('(prefers-color-scheme: light)').addEventListener('change', (event) => {
+    if (localStorage.getItem(STORAGE_KEY)) return;
+    root.setAttribute('data-theme', event.matches ? 'light' : 'dark');
+    syncButtons();
+  });
+
+  syncButtons();
+</script>

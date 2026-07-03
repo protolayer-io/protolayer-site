@@ -1,0 +1,91 @@
+---
+import Logo from './Logo.astro';
+import ThemeToggle from './ThemeToggle.astro';
+
+interface Props {
+  showThemeLabel?: boolean;
+}
+
+const { showThemeLabel = false } = Astro.props;
+
+const links = [
+  { href: '#about', label: 'About' },
+  { href: '#projects', label: 'Projects' },
+  { href: '#legal', label: 'Legal' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+
+<header class="nav">
+  <a class="brand" href="/">
+    <Logo size={24} />
+    <span class="wordmark">Proto<span class="wordmark-accent">Layer</span></span>
+  </a>
+  <nav class="links" aria-label="Main navigation">
+    {links.map((link) => <a class="nav-link" href={link.href}>{link.label}</a>)}
+    <ThemeToggle showLabel={showThemeLabel} />
+  </nav>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px var(--page-pad);
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-soft);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+
+  .wordmark {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 16px;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .wordmark-accent {
+    color: var(--brand);
+  }
+
+  .links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    font-size: 13.5px;
+  }
+
+  .nav-link {
+    color: var(--muted);
+    transition: color 0.2s;
+  }
+
+  .nav-link:hover {
+    color: var(--brand-2);
+  }
+
+  @media (max-width: 720px) {
+    .links {
+      gap: 16px;
+      font-size: 12.5px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .nav-link {
+      display: none;
+    }
+  }
+</style>

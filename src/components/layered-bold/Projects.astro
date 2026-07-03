@@ -1,0 +1,177 @@
+---
+// Design 1b — bento grid: large featured Mostro tile (spans 2 rows) + 2 small tiles.
+// TODO: replace the placeholder tiles with real projects (or remove them) before launch.
+const placeholders = ['more projects\ncoming soon', '[ placeholder ]'];
+---
+
+<section class="projects" id="projects">
+  <div class="container">
+    <div class="header" data-reveal>
+      <h2>Projects we support</h2>
+      <span class="header-tag">Open source</span>
+    </div>
+    <div class="grid">
+      <a class="card featured" data-reveal href="https://mostro.network" target="_blank" rel="noopener">
+        <div class="corner-glow" aria-hidden="true"></div>
+        <div class="featured-inner">
+          <div class="card-top">
+            <svg
+              width="40"
+              height="40"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="var(--brand-2)"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="5" r="2.4"></circle>
+              <circle cx="5" cy="18" r="2.4"></circle>
+              <circle cx="19" cy="18" r="2.4"></circle>
+              <path d="M12 7.4v4M10.5 13.2 6.6 16M13.5 13.2 17.4 16"></path>
+            </svg>
+            <span class="pill">active</span>
+          </div>
+          <h3>Mostro</h3>
+          <p>
+            Open-source peer-to-peer protocol for resilient digital exchange systems, built on
+            open standards.
+          </p>
+          <span class="link">mostro.network →</span>
+        </div>
+      </a>
+      {
+        placeholders.map((text) => (
+          <div class="card placeholder" data-reveal>
+            <div class="placeholder-text">{text}</div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects {
+    padding: 0 var(--page-pad) 70px;
+  }
+
+  .header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(26px, 3.5vw, 30px);
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .header-tag {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted-2);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 16px;
+  }
+
+  .featured {
+    grid-row: span 2;
+    display: block;
+    background: linear-gradient(160deg, var(--surface), var(--surface-2));
+    border-radius: 18px;
+    padding: 32px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .corner-glow {
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, var(--glow), transparent 70%);
+  }
+
+  .featured-inner {
+    position: relative;
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+  }
+
+  .pill {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    color: var(--brand-2);
+    background: var(--glow);
+    border: 1px solid var(--brand);
+    border-radius: 999px;
+    padding: 5px 12px;
+  }
+
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 30px;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .featured p {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--muted);
+    margin-bottom: 24px;
+    max-width: 340px;
+  }
+
+  .link {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--brand-2);
+  }
+
+  .placeholder {
+    border-style: dashed;
+    border-color: var(--border);
+    border-radius: 18px;
+    padding: 26px;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--muted-2);
+  }
+
+  .placeholder-text {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    white-space: pre-line;
+  }
+
+  @media (max-width: 900px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+
+    .featured {
+      grid-row: auto;
+    }
+  }
+</style>

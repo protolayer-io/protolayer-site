@@ -1,0 +1,84 @@
+---
+import '../styles/tokens.css';
+import '../styles/global.css';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../site.config';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Theme init: runs before paint to avoid a flash of the wrong theme. -->
+    <script is:inline>
+      (() => {
+        const saved = localStorage.getItem('theme');
+        const mode =
+          saved === 'light' || saved === 'dark'
+            ? saved
+            : matchMedia('(prefers-color-scheme: light)').matches
+              ? 'light'
+              : 'dark';
+        document.documentElement.setAttribute('data-theme', mode);
+      })();
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <slot />
+
+    <!-- Scroll reveals -->
+    <script>
+      const revealElements = Array.from(
+        document.querySelectorAll<HTMLElement>('[data-reveal]')
+      );
+      const prefersReducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (prefersReducedMotion) {
+        revealElements.forEach((el) => el.classList.add('is-revealed'));
+      } else {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              const el = entry.target as HTMLElement;
+              const index = revealElements.indexOf(el);
+              el.style.transitionDelay = `${Math.min((index % 4) * 70, 260)}ms`;
+              el.classList.add('is-revealed');
+              observer.unobserve(el);
+            }
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+        );
+        revealElements.forEach((el) => observer.observe(el));
+
+        // Safety: force-reveal anything already in view in case the observer never fires.
+        setTimeout(() => {
+          revealElements.forEach((el) => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < innerHeight && rect.bottom > 0) el.classList.add('is-revealed');
+          });
+        }, 500);
+      }
+    </script>
+  </body>
+</html>

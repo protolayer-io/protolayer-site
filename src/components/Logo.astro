@@ -1,0 +1,26 @@
+---
+// Layered-diamond brand mark (see Brand Manual → Logo & Application).
+interface Props {
+  size?: number;
+}
+
+const { size = 24 } = Astro.props;
+---
+
+<svg width={size} height={size} viewBox="0 0 48 48" fill="none" aria-hidden="true">
+  <path d="M24 5 L43 15 L24 25 L5 15 Z" fill="var(--brand)"></path>
+  <path
+    d="M5 23.5 L24 33.5 L43 23.5"
+    stroke="var(--brand-2)"
+    stroke-width="3"
+    stroke-linejoin="round"
+    fill="none"
+    opacity="0.8"></path>
+  <path
+    d="M5 32 L24 42 L43 32"
+    stroke="var(--deep)"
+    stroke-width="3"
+    stroke-linejoin="round"
+    fill="none"
+    opacity="0.55"></path>
+</svg>
