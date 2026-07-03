@@ -132,7 +132,9 @@
     let lineIndex = 0;
     const printNextOutputLine = () => {
       if (lineIndex >= OUTPUT_LINES.length) {
-        terminal.innerHTML += PROMPT_HTML;
+        // insertAdjacentHTML leaves existing nodes untouched; innerHTML += would
+        // re-create every line and replay their slide-in animations (visible flash).
+        terminal.insertAdjacentHTML('beforeend', PROMPT_HTML);
         return;
       }
       const line = document.createElement('div');
