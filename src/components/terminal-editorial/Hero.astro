@@ -1,0 +1,117 @@
+---
+// Design 1a "Terminal Editorial" — two-column hero with animated grid + terminal.
+import Terminal from '../Terminal.astro';
+---
+
+<section class="hero">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="hero-inner container">
+    <div>
+      <p class="eyebrow" data-reveal>
+        <span class="eyebrow-line"></span>Estonia · Est. 2026
+      </p>
+      <h1 data-reveal>
+        Building modular<br /><span class="accent">digital infrastructure</span>
+      </h1>
+      <p class="subcopy" data-reveal>
+        We design and operate the technical layers that enable resilient, interoperable, and
+        scalable digital systems.
+      </p>
+      <div class="actions" data-reveal>
+        <a class="btn btn-primary" href="#projects">Explore projects</a>
+        <a class="btn btn-ghost" href="#about">Learn more</a>
+      </div>
+    </div>
+    <Terminal />
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    padding: 78px var(--page-pad) 70px;
+    overflow: hidden;
+  }
+
+  .glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(90% 70% at 82% 8%, var(--glow), transparent 55%);
+    pointer-events: none;
+  }
+
+  .grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 56px 56px;
+    opacity: 0.6;
+    animation: pl-grid 8s linear infinite;
+    mask-image: radial-gradient(100% 100% at 60% 20%, #000, transparent 72%);
+    -webkit-mask-image: radial-gradient(100% 100% at 60% 20%, #000, transparent 72%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 44px;
+    align-items: center;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--brand);
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .eyebrow-line {
+    width: 30px;
+    height: 1px;
+    background: var(--brand);
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(34px, 5.5vw, 52px);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    color: var(--text);
+    margin-bottom: 22px;
+  }
+
+  .accent {
+    color: var(--brand);
+  }
+
+  .subcopy {
+    font-size: 17.5px;
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 440px;
+    margin-bottom: 30px;
+  }
+
+  .actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 900px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

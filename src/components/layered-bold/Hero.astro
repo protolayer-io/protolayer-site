@@ -1,0 +1,125 @@
+---
+// Design 1b "Layered / Bold" — centered giant display, floating layers motif,
+// terminal as a centered floating card below the CTAs.
+import Terminal from '../Terminal.astro';
+---
+
+<section class="hero">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="motif" aria-hidden="true">
+    <svg viewBox="0 0 520 520" fill="none">
+      <g class="motif-top">
+        <path d="M260 60 L430 150 L260 240 L90 150 Z" fill="var(--brand)" opacity="0.14"></path>
+        <path d="M260 60 L430 150 L260 240 L90 150 Z" stroke="var(--brand)" stroke-width="2" opacity="0.5"></path>
+      </g>
+      <path class="motif-mid" d="M90 210 L260 300 L430 210" stroke="var(--brand-2)" stroke-width="2" opacity="0.4"></path>
+      <path class="motif-low" d="M90 270 L260 360 L430 270" stroke="var(--deep)" stroke-width="2" opacity="0.3"></path>
+    </svg>
+  </div>
+  <div class="hero-inner container">
+    <p class="eyebrow" data-reveal>Open source · Distributed systems · Estonia</p>
+    <h1 data-reveal>Modular <span class="accent">digital</span><br />infrastructure.</h1>
+    <p class="subcopy" data-reveal>
+      We design and operate the technical layers that enable resilient, interoperable, and
+      scalable digital systems.
+    </p>
+    <div class="actions" data-reveal>
+      <a class="btn btn-lg btn-primary" href="#projects">Explore projects</a>
+      <a class="btn btn-lg btn-ghost" href="#about">Learn more</a>
+    </div>
+    <div class="terminal-wrap">
+      <Terminal />
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    padding: 96px var(--page-pad);
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(80% 60% at 50% 0%, var(--glow), transparent 60%);
+    pointer-events: none;
+  }
+
+  .motif {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(520px, 100vw);
+    height: 520px;
+    pointer-events: none;
+    opacity: 0.9;
+  }
+
+  .motif-top {
+    transform-origin: 260px 210px;
+    animation: pl-float 6s ease-in-out infinite;
+  }
+
+  .motif-mid {
+    animation: pl-float 6s ease-in-out infinite;
+    animation-delay: 0.4s;
+  }
+
+  .motif-low {
+    animation: pl-float 6s ease-in-out infinite;
+    animation-delay: 0.8s;
+  }
+
+  .hero-inner {
+    position: relative;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--brand);
+    margin-bottom: 26px;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(40px, 8vw, 76px);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+    color: var(--text);
+    max-width: 900px;
+    margin: 0 auto 26px;
+  }
+
+  .accent {
+    color: var(--brand);
+  }
+
+  .subcopy {
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--muted);
+    max-width: 560px;
+    margin: 0 auto 34px;
+  }
+
+  .actions {
+    display: flex;
+    gap: 13px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 56px;
+  }
+
+  .terminal-wrap {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+</style>

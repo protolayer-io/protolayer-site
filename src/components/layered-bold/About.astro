@@ -1,0 +1,47 @@
+---
+// Design 1b — centered about section.
+---
+
+<section class="about" id="about">
+  <div class="container">
+    <p class="mono-label label" data-reveal>About</p>
+    <h2 data-reveal>A technology company building the layers others build on</h2>
+    <p class="copy" data-reveal>
+      ProtoLayer OÜ is a technology company registered in Estonia, dedicated to the development
+      and support of open-source software and modular digital infrastructure. Our focus is
+      modular architecture, distributed systems, and protocol experimentation for emerging
+      digital ecosystems.
+    </p>
+  </div>
+</section>
+
+<style>
+  .about {
+    padding: 70px var(--page-pad);
+    text-align: center;
+  }
+
+  .label {
+    color: var(--brand);
+    margin-bottom: 18px;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(28px, 4vw, 36px);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    max-width: 720px;
+    margin: 0 auto 20px;
+  }
+
+  .copy {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 640px;
+    margin: 0 auto;
+  }
+</style>

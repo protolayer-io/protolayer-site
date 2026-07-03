@@ -1,0 +1,73 @@
+---
+// Design 1a — four principles as emerald top-border columns.
+const principles = [
+  { title: 'Modular', copy: 'Every piece is self-contained and composable. Nothing is monolithic.' },
+  { title: 'Open', copy: 'Verifiable code and protocols. Transparency is infrastructure.' },
+  { title: 'Resilient', copy: 'Built to survive failure, scale, and time.' },
+  { title: 'Foundational', copy: 'We build base layers, not surface applications.' },
+];
+---
+
+<section class="principles">
+  <div class="container">
+    <p class="mono-label label" data-reveal>Principles</p>
+    <div class="grid">
+      {
+        principles.map((principle) => (
+          <div class="item" data-reveal>
+            <h3>{principle.title}</h3>
+            <p>{principle.copy}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .principles {
+    padding: 26px var(--page-pad) 60px;
+  }
+
+  .label {
+    color: var(--muted-2);
+    margin-bottom: 22px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .item {
+    border-top: 2px solid var(--brand);
+    padding-top: 16px;
+  }
+
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  @media (max-width: 900px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

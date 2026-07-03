@@ -1,0 +1,65 @@
+---
+import Logo from './Logo.astro';
+import {
+  COPYRIGHT_YEAR,
+  REGISTRY_CODE,
+  REGISTERED_ADDRESS,
+  TAGLINE,
+} from '../site.config';
+
+interface Props {
+  /**
+   * 'simple' → logo + copyright + tagline (design 1a; legal lives in its own section).
+   * 'legal'  → copyright + registry info + address + tagline (design 1b).
+   */
+  variant?: 'simple' | 'legal';
+}
+
+const { variant = 'simple' } = Astro.props;
+---
+
+<footer class="footer">
+  {
+    variant === 'simple' ? (
+      <div class="footer-brand">
+        <Logo size={18} />
+        <span class="footer-text">© {COPYRIGHT_YEAR} ProtoLayer OÜ</span>
+      </div>
+    ) : (
+      <div class="footer-text footer-legal" id="legal">
+        © {COPYRIGHT_YEAR} ProtoLayer OÜ · Reg. no. {REGISTRY_CODE}
+        <br />
+        {REGISTERED_ADDRESS}
+      </div>
+    )
+  }
+  <span class="footer-text">{TAGLINE}</span>
+</footer>
+
+<style>
+  .footer {
+    padding: 26px var(--page-pad) 34px;
+    border-top: 1px solid var(--border-soft);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .footer-text {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted-2);
+  }
+
+  .footer-legal {
+    line-height: 1.7;
+  }
+</style>

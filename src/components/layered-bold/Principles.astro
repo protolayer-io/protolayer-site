@@ -1,0 +1,92 @@
+---
+// Design 1b — four numbered principle cards with hover-lift on a raised strip.
+const principles = [
+  {
+    number: '01',
+    title: 'Modular',
+    copy: 'Every piece is self-contained and composable. Nothing is monolithic.',
+  },
+  {
+    number: '02',
+    title: 'Open',
+    copy: 'Verifiable code and protocols. Transparency is infrastructure.',
+  },
+  {
+    number: '03',
+    title: 'Resilient',
+    copy: 'Built to survive failure, scale, and time.',
+  },
+  {
+    number: '04',
+    title: 'Foundational',
+    copy: 'We build base layers, not surface applications.',
+  },
+];
+---
+
+<section class="principles">
+  <div class="grid container">
+    {
+      principles.map((principle) => (
+        <div class="card item" data-reveal>
+          <div class="number">{principle.number}</div>
+          <h3>{principle.title}</h3>
+          <p>{principle.copy}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .principles {
+    padding: 56px var(--page-pad);
+    background: var(--surface-2);
+    border-top: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border-soft);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+
+  .item {
+    padding: 24px;
+    cursor: default;
+  }
+
+  .number {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--brand-2);
+    margin-bottom: 14px;
+  }
+
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 19px;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  p {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  @media (max-width: 900px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
