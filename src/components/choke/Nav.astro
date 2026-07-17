@@ -1,18 +1,28 @@
 ---
 import Logo from './Logo.astro';
+import LangSwitcher from '../LangSwitcher.astro';
 import { PLAY_URL } from './config';
+import { getChoke, type Lang } from '../../i18n/ui';
+import { defaultLang, localizedPath } from '../../i18n/utils';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = getChoke(lang).nav;
 
 const links = [
-  ['#features', 'Features'],
-  ['#how', 'How it works'],
-  ['#live', 'Live results'],
-  ['#screens', 'Screens'],
-  ['#faq', 'FAQ'],
+  ['#features', t.features],
+  ['#how', t.how],
+  ['#live', t.live],
+  ['#screens', t.screens],
+  ['#faq', t.faq],
 ];
 ---
 
 <nav class="nav container">
-  <a class="brand" href="/choke">
+  <a class="brand" href={localizedPath(lang, 'choke')}>
     <Logo size={38} />
     <span class="name">Choke</span>
   </a>
@@ -20,11 +30,12 @@ const links = [
     <div class="links">
       {links.map(([href, label]) => <a href={href}>{label}</a>)}
     </div>
+    <LangSwitcher page="choke" current={lang} variant="choke" />
     <a class="cta" href={PLAY_URL} target="_blank" rel="noopener">
       <svg width="15" height="17" viewBox="0 0 15 17" fill="none" aria-hidden="true">
         <path d="M1 1.2 L13 8.5 L1 15.8 Z" fill="#fff"></path>
       </svg>
-      Get the app
+      {t.getApp}
     </a>
   </div>
 </nav>
@@ -61,7 +72,7 @@ const links = [
   .right {
     display: flex;
     align-items: center;
-    gap: 34px;
+    gap: 24px;
   }
 
   .links {

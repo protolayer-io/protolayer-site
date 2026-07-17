@@ -1,0 +1,95 @@
+---
+/**
+ * Language switcher. Renders EN / ES / PT links to the current page's locale
+ * variants and records the chosen locale in localStorage so auto-detection on
+ * the default pages respects an explicit choice.
+ *
+ * `variant` only affects styling: 'site' adapts to the themeable ProtoLayer
+ * tokens; 'choke' matches the dark Choke palette.
+ */
+import { langCodes, localizedPath, type Lang } from '../i18n/utils';
+
+interface Props {
+  page: 'home' | 'choke';
+  current: Lang;
+  variant?: 'site' | 'choke';
+}
+
+const { page, current, variant = 'site' } = Astro.props;
+---
+
+<div class:list={['lang-switcher', variant]} role="group" aria-label="Language">
+  {
+    langCodes.map((lang) => (
+      <a
+        class:list={['lang-opt', { active: lang === current }]}
+        href={localizedPath(lang, page)}
+        data-lang-choice={lang}
+        hreflang={lang}
+        aria-current={lang === current ? 'true' : undefined}
+      >
+        {lang.toUpperCase()}
+      </a>
+    ))
+  }
+</div>
+
+<script>
+  document.querySelectorAll('[data-lang-choice]').forEach((el) => {
+    el.addEventListener('click', () => {
+      try {
+        localStorage.setItem('pl-lang', el.getAttribute('data-lang-choice') || 'en');
+      } catch (e) {
+        /* localStorage unavailable — navigation still proceeds */
+      }
+    });
+  });
+</script>
+
+<style>
+  .lang-switcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .lang-opt {
+    padding: 4px 7px;
+    border-radius: 7px;
+    letter-spacing: 0.03em;
+    transition:
+      color 0.2s,
+      background 0.2s;
+  }
+
+  /* Site variant — themeable tokens */
+  .site .lang-opt {
+    color: var(--muted-2);
+  }
+
+  .site .lang-opt:hover {
+    color: var(--brand-2);
+  }
+
+  .site .lang-opt.active {
+    color: var(--brand);
+    background: var(--glow);
+  }
+
+  /* Choke variant — dark palette */
+  .choke .lang-opt {
+    color: var(--muted-2);
+  }
+
+  .choke .lang-opt:hover {
+    color: var(--text);
+  }
+
+  .choke .lang-opt.active {
+    color: var(--green);
+    background: rgba(27, 163, 78, 0.14);
+  }
+</style>

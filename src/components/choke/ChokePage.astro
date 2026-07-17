@@ -1,0 +1,113 @@
+---
+// Choke landing page body (design option 1a), parameterized by locale.
+// Rendered by the /choke, /es/choke and /pt/choke route files.
+import '../../styles/choke.css';
+import LangDetect from '../LangDetect.astro';
+import { getChoke, type Lang } from '../../i18n/ui';
+import { defaultLang, langCodes, localizedPath } from '../../i18n/utils';
+import Nav from './Nav.astro';
+import Hero from './Hero.astro';
+import ScoringStrip from './ScoringStrip.astro';
+import Features from './Features.astro';
+import HowItWorks from './HowItWorks.astro';
+import Showcase from './Showcase.astro';
+import LiveResults from './LiveResults.astro';
+import Screens from './Screens.astro';
+import Faq from './Faq.astro';
+import Cta from './Cta.astro';
+import Footer from './Footer.astro';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = getChoke(lang);
+
+const canonical = new URL(localizedPath(lang, 'choke'), Astro.site).href;
+const alternates = langCodes.map((code) => ({
+  code,
+  href: new URL(localizedPath(code, 'choke'), Astro.site).href,
+}));
+const defaultHref = new URL(localizedPath(defaultLang, 'choke'), Astro.site).href;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{t.meta.title}</title>
+    <meta name="description" content={t.meta.desc} />
+    <link rel="icon" type="image/svg+xml" href="/choke/favicon.svg" />
+    <link rel="canonical" href={canonical} />
+
+    {alternates.map((alt) => <link rel="alternate" hreflang={alt.code} href={alt.href} />)}
+    <link rel="alternate" hreflang="x-default" href={defaultHref} />
+
+    {lang === defaultLang && <LangDetect page="choke" />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={t.meta.title} />
+    <meta property="og:description" content={t.meta.desc} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content="https://protolayer.io/choke/screen-scoring.jpg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="page">
+      <div class="glow glow-green" aria-hidden="true"></div>
+      <div class="glow glow-gold" aria-hidden="true"></div>
+      <Nav lang={lang} />
+      <main>
+        <Hero lang={lang} />
+        <ScoringStrip lang={lang} />
+        <Features lang={lang} />
+        <HowItWorks lang={lang} />
+        <Showcase lang={lang} />
+        <LiveResults lang={lang} />
+        <Screens lang={lang} />
+        <Faq lang={lang} />
+        <Cta lang={lang} />
+      </main>
+      <Footer lang={lang} />
+    </div>
+  </body>
+</html>
+
+<style>
+  .page {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glow {
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .glow-green {
+    top: -260px;
+    left: 50%;
+    width: 900px;
+    height: 600px;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse at center, rgba(27, 163, 78, 0.22), transparent 70%);
+  }
+
+  .glow-gold {
+    top: 400px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(245, 184, 0, 0.1), transparent 70%);
+  }
+</style>

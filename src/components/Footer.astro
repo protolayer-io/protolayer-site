@@ -1,11 +1,8 @@
 ---
 import Logo from './Logo.astro';
-import {
-  COPYRIGHT_YEAR,
-  REGISTRY_CODE,
-  REGISTERED_ADDRESS,
-  TAGLINE,
-} from '../site.config';
+import { COPYRIGHT_YEAR, REGISTRY_CODE, REGISTERED_ADDRESS } from '../site.config';
+import { getSite, type Lang } from '../i18n/ui';
+import { defaultLang } from '../i18n/utils';
 
 interface Props {
   /**
@@ -13,9 +10,11 @@ interface Props {
    * 'legal'  → copyright + registry info + address + tagline (design 1b).
    */
   variant?: 'simple' | 'legal';
+  lang?: Lang;
 }
 
-const { variant = 'simple' } = Astro.props;
+const { variant = 'simple', lang = defaultLang } = Astro.props;
+const site = getSite(lang);
 ---
 
 <footer class="footer">
@@ -27,13 +26,13 @@ const { variant = 'simple' } = Astro.props;
       </div>
     ) : (
       <div class="footer-text footer-legal" id="legal">
-        © {COPYRIGHT_YEAR} ProtoLayer OÜ · Reg. no. {REGISTRY_CODE}
+        © {COPYRIGHT_YEAR} ProtoLayer OÜ · {site.footer.reg} {REGISTRY_CODE}
         <br />
         {REGISTERED_ADDRESS}
       </div>
     )
   }
-  <span class="footer-text">{TAGLINE}</span>
+  <span class="footer-text">{site.footer.tagline}</span>
 </footer>
 
 <style>

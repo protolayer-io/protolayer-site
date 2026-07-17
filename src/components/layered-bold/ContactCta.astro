@@ -1,6 +1,15 @@
 ---
 // Design 1b — full-width emerald gradient CTA block with subtle grid texture.
 import { CONTACT_EMAIL } from '../../site.config';
+import { getSite, type Lang } from '../../i18n/ui';
+import { defaultLang } from '../../i18n/utils';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = getSite(lang).contact;
 ---
 
 <section class="contact-cta" id="contact">
@@ -8,8 +17,8 @@ import { CONTACT_EMAIL } from '../../site.config';
     <div class="cta" data-reveal>
       <div class="texture" aria-hidden="true"></div>
       <div class="cta-inner">
-        <h2>Let's build a layer together</h2>
-        <p>For inquiries, partnerships, and open-source collaboration.</p>
+        <h2>{t.title}</h2>
+        <p>{t.subtitle}</p>
         <a class="email" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL} →</a>
       </div>
     </div>

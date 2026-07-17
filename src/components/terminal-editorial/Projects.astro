@@ -1,16 +1,26 @@
 ---
 // Design 1a — projects grid: Choke card + a dashed "coming soon" slot.
-const upcoming = ['More projects\ncoming soon'];
+import { getSite, type Lang } from '../../i18n/ui';
+import { defaultLang, localizedPath } from '../../i18n/utils';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = defaultLang } = Astro.props;
+const site = getSite(lang);
+const chokeHref = localizedPath(lang, 'choke');
+const upcoming = [site.projects.soon];
 ---
 
 <section class="projects" id="projects">
   <div class="container">
     <div class="header" data-reveal>
-      <h2>Projects we support</h2>
-      <span class="header-tag">02 — Open source</span>
+      <h2>{site.projects.title}</h2>
+      <span class="header-tag">{site.te.projectsTag}</span>
     </div>
     <div class="grid">
-      <a class="card project-card" data-reveal href="/choke">
+      <a class="card project-card" data-reveal href={chokeHref}>
         <div class="card-top">
           <svg
             width="30"
@@ -29,7 +39,7 @@ const upcoming = ['More projects\ncoming soon'];
           <span class="pill">active</span>
         </div>
         <h3>Choke</h3>
-        <p>Open-source, real-time BJJ match scoring app with live public scoreboards.</p>
+        <p>{site.te.chokeDesc}</p>
         <span class="link">protolayer.io/choke →</span>
       </a>
       {

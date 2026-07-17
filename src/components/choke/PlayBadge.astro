@@ -2,12 +2,16 @@
 // Google Play store badge. `dark` (hero) sits on the page background,
 // `ink` (CTA banner) sits on the green gradient.
 import { PLAY_URL } from './config';
+import { getChoke, type Lang } from '../../i18n/ui';
+import { defaultLang } from '../../i18n/utils';
 
 interface Props {
   variant?: 'dark' | 'ink';
+  lang?: Lang;
 }
 
-const { variant = 'dark' } = Astro.props;
+const { variant = 'dark', lang = defaultLang } = Astro.props;
+const getItOn = getChoke(lang).getItOn;
 ---
 
 <a class:list={['badge', variant]} href={PLAY_URL} target="_blank" rel="noopener">
@@ -16,7 +20,7 @@ const { variant = 'dark' } = Astro.props;
     <path d="M2 2 L14 9 L2 16 Z" fill="#4ADE80" opacity="0.5"></path>
   </svg>
   <span class="label">
-    <span class="small">GET IT ON</span>
+    <span class="small">{getItOn}</span>
     <span class="big">Google Play</span>
   </span>
 </a>

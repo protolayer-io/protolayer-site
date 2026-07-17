@@ -8,16 +8,23 @@ import Principles from '../components/layered-bold/Principles.astro';
 import About from '../components/layered-bold/About.astro';
 import Projects from '../components/layered-bold/Projects.astro';
 import ContactCta from '../components/layered-bold/ContactCta.astro';
+import { defaultLang, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = defaultLang } = Astro.props;
 ---
 
-<Base>
-  <Nav showThemeLabel />
+<Base lang={lang} page="home">
+  <Nav showThemeLabel lang={lang} />
   <main>
-    <Hero />
-    <Principles />
-    <About />
-    <Projects />
-    <ContactCta />
+    <Hero lang={lang} />
+    <Principles lang={lang} />
+    <About lang={lang} />
+    <Projects lang={lang} />
+    <ContactCta lang={lang} />
   </main>
-  <Footer variant="legal" />
+  <Footer variant="legal" lang={lang} />
 </Base>

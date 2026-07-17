@@ -1,29 +1,39 @@
 ---
 // App screenshots gallery — four phone frames plus two wide detail shots.
+import { getChoke, type Lang } from '../../i18n/ui';
+import { defaultLang } from '../../i18n/utils';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = getChoke(lang).screens;
+
 const phones = [
-  { src: '/choke/screen-home.jpg', alt: 'Match list', caption: 'Match dashboard' },
-  { src: '/choke/screen-settings.jpg', alt: 'Settings', caption: 'Match settings' },
-  { src: '/choke/screen-account.jpg', alt: 'Account', caption: 'Your key & identity' },
-  { src: '/choke/screen-empty.jpg', alt: 'Empty state', caption: 'Ready for the next one' },
+  { src: '/choke/screen-home.jpg', caption: t.cap1 },
+  { src: '/choke/screen-settings.jpg', caption: t.cap2 },
+  { src: '/choke/screen-account.jpg', caption: t.cap3 },
+  { src: '/choke/screen-empty.jpg', caption: t.cap4 },
 ];
 
 const wide = [
-  { src: '/choke/screen-howended.jpg', alt: 'Finish a match' },
-  { src: '/choke/screen-technique.jpg', alt: 'Technique picker' },
+  { src: '/choke/screen-howended.jpg', alt: t.wide1 },
+  { src: '/choke/screen-technique.jpg', alt: t.wide2 },
 ];
 ---
 
 <section class="screens container" id="screens">
   <div class="head">
-    <span class="kicker">// A closer look</span>
-    <h2 class="section-title">Clean, fast, and made for the mat.</h2>
+    <span class="kicker">{t.kicker}</span>
+    <h2 class="section-title">{t.title}</h2>
   </div>
   <div class="phones">
     {
       phones.map((shot) => (
         <figure class="phone-item">
           <div class="frame">
-            <img src={shot.src} alt={shot.alt} loading="lazy" />
+            <img src={shot.src} alt={shot.caption} loading="lazy" />
           </div>
           <figcaption>{shot.caption}</figcaption>
         </figure>

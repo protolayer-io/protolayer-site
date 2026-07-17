@@ -1,32 +1,25 @@
 ---
-import { LIVE_URL } from './config';
+import { getChoke, type Lang } from '../../i18n/ui';
+import { defaultLang } from '../../i18n/utils';
 
-const steps = [
-  {
-    number: '01',
-    gold: false,
-    title: 'Create the match',
-    desc: 'Enter both competitors and the round duration. A match gets a short shareable ID like <span class="match-id">#3b3f</span>.',
-  },
-  {
-    number: '02',
-    gold: false,
-    title: 'Score it live',
-    desc: 'Start the clock and tap points as the action unfolds. Undo mistakes, add advantages and penalties, finish by submission.',
-  },
-  {
-    number: '03',
-    gold: true,
-    title: 'Share the board',
-    desc: `The scoreboard is already live on <a class="gold-link" href="${LIVE_URL}" target="_blank" rel="noopener">bjjscore.live</a>. Send the link or your key and anyone can follow the results.`,
-  },
-];
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = getChoke(lang).how;
+
+const steps = t.steps.map((step, i) => ({
+  number: String(i + 1).padStart(2, '0'),
+  gold: i === 2,
+  ...step,
+}));
 ---
 
 <section class="how container" id="how">
   <div class="head">
-    <span class="kicker">// From bracket to broadcast in 3 steps</span>
-    <h2 class="section-title">Set up faster than the fighters warm up.</h2>
+    <span class="kicker">{t.kicker}</span>
+    <h2 class="section-title">{t.title}</h2>
   </div>
   <div class="grid">
     {

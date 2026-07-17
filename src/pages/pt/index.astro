@@ -1,0 +1,15 @@
+---
+// Landing page — Brazilian Portuguese locale (/pt/).
+import { SITE_DESIGN } from '../../site.config';
+import LayeredBold from '../../designs/LayeredBold.astro';
+import TerminalEditorial from '../../designs/TerminalEditorial.astro';
+
+const designs = {
+  'layered-bold': LayeredBold,
+  'terminal-editorial': TerminalEditorial,
+} as const;
+
+const Design = designs[SITE_DESIGN];
+---
+
+<Design lang="pt" />
