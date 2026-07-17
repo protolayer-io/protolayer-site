@@ -1,22 +1,29 @@
 ---
 // Live scoring showcase — the scoring screen next to the point breakdown.
+import { getChoke, type Lang } from '../../i18n/ui';
+import { defaultLang } from '../../i18n/utils';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = getChoke(lang).showcase;
+
 const points = [
-  { value: '+2', gold: false, label: 'Takedown / Sweep' },
-  { value: '+3', gold: false, label: 'Guard pass' },
-  { value: '+4', gold: false, label: 'Mount / Back take' },
-  { value: 'ADV / PEN', gold: true, label: 'Advantages & penalties' },
+  { value: '+2', gold: false, label: t.p1 },
+  { value: '+3', gold: false, label: t.p2 },
+  { value: '+4', gold: false, label: t.p3 },
+  { value: 'ADV / PEN', gold: true, label: t.p4 },
 ];
 ---
 
 <section class="showcase container">
   <div class="panel">
     <div class="copy">
-      <span class="kicker">// The scoring screen</span>
-      <h2 class="section-title">Built for the pace of a real match.</h2>
-      <p class="lead">
-        Competitor scores are huge and colour-coded so the whole room can read them across the mat.
-        Points, advantages and penalties each have a dedicated button — no menus, no fumbling.
-      </p>
+      <span class="kicker">{t.kicker}</span>
+      <h2 class="section-title">{t.title}</h2>
+      <p class="lead">{t.lead}</p>
       <div class="points">
         {
           points.map((point) => (

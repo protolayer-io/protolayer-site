@@ -1,24 +1,44 @@
 ---
 import '../styles/tokens.css';
 import '../styles/global.css';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../site.config';
+import LangDetect from '../components/LangDetect.astro';
+import { getSite, type Lang } from '../i18n/ui';
+import { defaultLang, langCodes, localizedPath } from '../i18n/utils';
 
 interface Props {
+  lang?: Lang;
+  /** Which page this is, for hreflang alternates and locale detection. */
+  page?: 'home';
   title?: string;
   description?: string;
 }
 
-const { title = SITE_TITLE, description = SITE_DESCRIPTION } = Astro.props;
+const { lang = defaultLang, page = 'home', title, description } = Astro.props;
+const site = getSite(lang);
+
+const pageTitle = title ?? site.meta.title;
+const pageDescription = description ?? site.meta.desc;
+
+const alternates = langCodes.map((code) => ({
+  code,
+  href: new URL(localizedPath(code, page), Astro.site).href,
+}));
+const defaultHref = new URL(localizedPath(defaultLang, page), Astro.site).href;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    {alternates.map((alt) => <link rel="alternate" hreflang={alt.code} href={alt.href} />)}
+    <link rel="alternate" hreflang="x-default" href={defaultHref} />
+
+    {lang === defaultLang && <LangDetect page={page} />}
 
     <!-- Theme init: runs before paint to avoid a flash of the wrong theme. -->
     <script is:inline>

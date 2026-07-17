@@ -1,6 +1,15 @@
 ---
 import Logo from './Logo.astro';
 import { PLAY_URL, LIVE_URL, GITHUB_URL } from './config';
+import { getChoke, type Lang } from '../../i18n/ui';
+import { defaultLang, localizedPath } from '../../i18n/utils';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = getChoke(lang).footer;
 ---
 
 <footer class="footer">
@@ -10,29 +19,26 @@ import { PLAY_URL, LIVE_URL, GITHUB_URL } from './config';
         <Logo size={34} />
         <span class="name">Choke</span>
       </div>
-      <p>
-        A modern, decentralized BJJ match scoring app. Built by{' '}
-        <a class="inline-link" href="https://protolayer.io" target="_blank" rel="noopener">ProtoLayer.io</a>
-      </p>
+      <p set:html={t.descHtml} />
     </div>
     <div class="cols">
       <div class="col">
-        <p class="col-title">Product</p>
+        <p class="col-title">{t.product}</p>
         <div class="col-links">
-          <a href="#features">Features</a>
-          <a href="#how">How it works</a>
-          <a href={LIVE_URL} target="_blank" rel="noopener">Live results</a>
-          <a href={PLAY_URL} target="_blank" rel="noopener">Get on Google Play</a>
+          <a href="#features">{t.features}</a>
+          <a href="#how">{t.how}</a>
+          <a href={LIVE_URL} target="_blank" rel="noopener">{t.live}</a>
+          <a href={PLAY_URL} target="_blank" rel="noopener">{t.getPlay}</a>
         </div>
       </div>
       <div class="col">
-        <p class="col-title">Project</p>
+        <p class="col-title">{t.project}</p>
         <div class="col-links">
           <a href={GITHUB_URL} target="_blank" rel="noopener">GitHub</a>
-          <a href="/">ProtoLayer</a>
-          <a href={`${GITHUB_URL}/blob/main/PRIVACY.md`} target="_blank" rel="noopener">Privacy</a>
+          <a href={localizedPath(lang, 'home')}>ProtoLayer</a>
+          <a href={`${GITHUB_URL}/blob/main/PRIVACY.md`} target="_blank" rel="noopener">{t.privacy}</a>
           <a href={`${GITHUB_URL}/blob/main/LICENSE`} target="_blank" rel="noopener">
-            License · GPL-3.0
+            {t.license}
           </a>
         </div>
       </div>
@@ -86,12 +92,12 @@ import { PLAY_URL, LIVE_URL, GITHUB_URL } from './config';
     color: var(--muted-2);
   }
 
-  .inline-link {
+  .brand-col p :global(.inline-link) {
     color: var(--green);
     font-weight: 600;
   }
 
-  .inline-link:hover {
+  .brand-col p :global(.inline-link:hover) {
     color: var(--green-light);
   }
 

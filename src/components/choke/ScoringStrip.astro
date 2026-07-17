@@ -1,16 +1,25 @@
 ---
 // IBJJF scoring reference strip between hero and features.
+import { getChoke, type Lang } from '../../i18n/ui';
+import { defaultLang } from '../../i18n/utils';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = getChoke(lang).strip;
 ---
 
 <div class="strip">
   <div class="container inner">
-    <span class="label">IBJJF-style scoring, built in</span>
+    <span class="label">{t.label}</span>
     <div class="items">
-      <span><b class="green">+2</b> Takedown</span>
-      <span><b class="green">+3</b> Guard pass</span>
-      <span><b class="green">+4</b> Mount / Back</span>
-      <span><b class="gold">ADV</b> Advantage</span>
-      <span><b class="red">PEN</b> Penalty</span>
+      <span><b class="green">+2</b> {t.takedown}</span>
+      <span><b class="green">+3</b> {t.guardpass}</span>
+      <span><b class="green">+4</b> {t.mount}</span>
+      <span><b class="gold">ADV</b> {t.advantage}</span>
+      <span><b class="red">PEN</b> {t.penalty}</span>
     </div>
   </div>
 </div>

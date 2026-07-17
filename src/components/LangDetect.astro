@@ -1,0 +1,25 @@
+---
+/**
+ * Client-side language detection for the default (English) pages of a static site.
+ *
+ * Runs before paint. On the un-prefixed English page it picks a locale from
+ * (1) a previously stored choice, else (2) the browser language, falling back
+ * to English. If the pick is Spanish or Portuguese it redirects to that
+ * locale's version of the same page. English visitors stay put — no redirect,
+ * no loop. Only rendered on the default-locale pages.
+ */
+import { localizedPath } from '../i18n/utils';
+
+interface Props {
+  page: 'home' | 'choke';
+}
+
+const { page } = Astro.props;
+
+const esHref = localizedPath('es', page);
+const ptHref = localizedPath('pt', page);
+
+const script = `(function(){try{var K='pl-lang';var s=localStorage.getItem(K);var p=s;if(!p){var b=(navigator.language||navigator.userLanguage||'').slice(0,2).toLowerCase();p=(b==='es'||b==='pt')?b:'en';}var t={es:'${esHref}',pt:'${ptHref}'};if(p&&t[p]){location.replace(t[p]);}}catch(e){}})();`;
+---
+
+<script is:inline set:html={script} />

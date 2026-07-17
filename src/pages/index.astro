@@ -1,5 +1,6 @@
 ---
-// Landing page. The active design is selected in src/site.config.ts (SITE_DESIGN).
+// Landing page (English, default locale). The active design is selected in
+// src/site.config.ts (SITE_DESIGN). Localized variants live under /es and /pt.
 import { SITE_DESIGN } from '../site.config';
 import LayeredBold from '../designs/LayeredBold.astro';
 import TerminalEditorial from '../designs/TerminalEditorial.astro';
@@ -12,4 +13,4 @@ const designs = {
 const Design = designs[SITE_DESIGN];
 ---
 
-<Design />
+<Design lang="en" />

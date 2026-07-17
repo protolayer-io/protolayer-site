@@ -1,14 +1,23 @@
 ---
 interface Props {
   showLabel?: boolean;
+  /** Localized words for the two theme modes. */
+  darkLabel?: string;
+  lightLabel?: string;
 }
 
-const { showLabel = false } = Astro.props;
+const { showLabel = false, darkLabel = 'dark', lightLabel = 'light' } = Astro.props;
 ---
 
-<button class="theme-toggle" data-theme-toggle aria-label="Toggle color theme">
+<button
+  class="theme-toggle"
+  data-theme-toggle
+  data-label-dark={darkLabel}
+  data-label-light={lightLabel}
+  aria-label="Toggle color theme"
+>
   <span data-theme-icon>☾</span>
-  {showLabel && <span data-theme-label>dark</span>}
+  {showLabel && <span data-theme-label>{darkLabel}</span>}
 </button>
 
 <style>
@@ -47,7 +56,11 @@ const { showLabel = false } = Astro.props;
       const icon = button.querySelector('[data-theme-icon]');
       const label = button.querySelector('[data-theme-label]');
       if (icon) icon.textContent = mode === 'light' ? '☀' : '☾';
-      if (label) label.textContent = mode;
+      if (label) {
+        const el = button as HTMLElement;
+        label.textContent =
+          mode === 'light' ? el.dataset.labelLight || 'light' : el.dataset.labelDark || 'dark';
+      }
     });
   };
 

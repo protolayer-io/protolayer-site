@@ -2,6 +2,15 @@
 // Design 1b "Layered / Bold" — centered giant display, floating layers motif,
 // terminal as a centered floating card below the CTAs.
 import Terminal from '../Terminal.astro';
+import { getSite, type Lang } from '../../i18n/ui';
+import { defaultLang } from '../../i18n/utils';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = getSite(lang).hero;
 ---
 
 <section class="hero">
@@ -17,15 +26,12 @@ import Terminal from '../Terminal.astro';
     </svg>
   </div>
   <div class="hero-inner container">
-    <p class="eyebrow" data-reveal>Open source · Distributed systems · Estonia</p>
-    <h1 data-reveal>Modular <span class="accent">digital</span><br />infrastructure.</h1>
-    <p class="subcopy" data-reveal>
-      We design and operate the technical layers that enable resilient, interoperable, and
-      scalable digital systems.
-    </p>
+    <p class="eyebrow" data-reveal>{t.eyebrow}</p>
+    <h1 data-reveal set:html={t.titleHtml} />
+    <p class="subcopy" data-reveal>{t.subcopy}</p>
     <div class="actions" data-reveal>
-      <a class="btn btn-lg btn-primary" href="#projects">Explore projects</a>
-      <a class="btn btn-lg btn-ghost" href="#about">Learn more</a>
+      <a class="btn btn-lg btn-primary" href="#projects">{t.explore}</a>
+      <a class="btn btn-lg btn-ghost" href="#about">{t.learn}</a>
     </div>
     <div class="terminal-wrap">
       <Terminal />
@@ -98,7 +104,7 @@ import Terminal from '../Terminal.astro';
     margin: 0 auto 26px;
   }
 
-  .accent {
+  h1 :global(.accent) {
     color: var(--brand);
   }
 

@@ -1,50 +1,32 @@
 ---
-import { LIVE_URL } from './config';
+import { getChoke, type Lang } from '../../i18n/ui';
+import { defaultLang } from '../../i18n/utils';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = getChoke(lang).faq;
 ---
 
 <section class="faq container" id="faq">
   <div class="head">
-    <span class="kicker">// Good to know</span>
-    <h2 class="section-title">Frequently asked</h2>
+    <span class="kicker">{t.kicker}</span>
+    <h2 class="section-title">{t.title}</h2>
   </div>
   <div class="list">
-    <details open>
-      <summary>Is Choke free?<span class="plus">+</span></summary>
-      <p>
-        Yes. Choke is completely free and open source under the GPL-3.0 license. There's no paid
-        tier, no ads and no account.
-      </p>
-    </details>
-    <details>
-      <summary>How do spectators watch the results?<span class="plus">+</span></summary>
-      <p>
-        Every match you score is published live to{' '}
-        <a class="gold-link" href={LIVE_URL} target="_blank" rel="noopener">bjjscore.live</a>. Share
-        the public key (npub) from your Account tab, and anyone can follow your matches there —
-        great for projecting at a venue.
-      </p>
-    </details>
-    <details>
-      <summary>Do I need to create an account?<span class="plus">+</span></summary>
-      <p>
-        No. When you install the app a secure keypair is generated on your device. That key is your
-        identity — back it up and keep the private part (nsec) secret.
-      </p>
-    </details>
-    <details>
-      <summary>Can a helper score matches for me?<span class="plus">+</span></summary>
-      <p>
-        Yes. You can delegate a single match to a teammate using an ephemeral match key, so multiple
-        people can run the scoring table without ever sharing your private key.
-      </p>
-    </details>
-    <details>
-      <summary>Which platforms are supported?<span class="plus">+</span></summary>
-      <p>
-        Choke is available for Android on Google Play, with iOS in the works. It's built with
-        Flutter, so the same experience runs everywhere.
-      </p>
-    </details>
+    {
+      t.items.map((item, i) => (
+        <details open={i === 0}>
+          <summary>
+            {item.q}
+            <span class="plus">+</span>
+          </summary>
+          <p set:html={item.a} />
+        </details>
+      ))
+    }
   </div>
 </section>
 
@@ -111,7 +93,7 @@ import { LIVE_URL } from './config';
     margin-top: 14px;
   }
 
-  .gold-link {
+  details p :global(.gold-link) {
     color: var(--gold);
   }
 </style>

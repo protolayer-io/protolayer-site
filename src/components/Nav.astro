@@ -1,29 +1,35 @@
 ---
 import Logo from './Logo.astro';
 import ThemeToggle from './ThemeToggle.astro';
+import LangSwitcher from './LangSwitcher.astro';
+import { getSite, type Lang } from '../i18n/ui';
+import { defaultLang, localizedPath } from '../i18n/utils';
 
 interface Props {
+  lang?: Lang;
   showThemeLabel?: boolean;
 }
 
-const { showThemeLabel = false } = Astro.props;
+const { lang = defaultLang, showThemeLabel = false } = Astro.props;
+const site = getSite(lang);
 
 const links = [
-  { href: '#about', label: 'About' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#legal', label: 'Legal' },
-  { href: '#contact', label: 'Contact' },
+  { href: '#about', label: site.nav.about },
+  { href: '#projects', label: site.nav.projects },
+  { href: '#legal', label: site.nav.legal },
+  { href: '#contact', label: site.nav.contact },
 ];
 ---
 
 <header class="nav">
-  <a class="brand" href="/">
+  <a class="brand" href={localizedPath(lang, 'home')}>
     <Logo size={24} />
     <span class="wordmark">Proto<span class="wordmark-accent">Layer</span></span>
   </a>
   <nav class="links" aria-label="Main navigation">
     {links.map((link) => <a class="nav-link" href={link.href}>{link.label}</a>)}
-    <ThemeToggle showLabel={showThemeLabel} />
+    <LangSwitcher page="home" current={lang} variant="site" />
+    <ThemeToggle showLabel={showThemeLabel} darkLabel={site.theme.dark} lightLabel={site.theme.light} />
   </nav>
 </header>
 

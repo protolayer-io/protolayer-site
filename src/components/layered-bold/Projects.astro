@@ -1,16 +1,26 @@
 ---
 // Design 1b — bento grid: large featured Choke tile + a dashed "coming soon" slot.
-const upcoming = ['More projects\ncoming soon'];
+import { getSite, type Lang } from '../../i18n/ui';
+import { defaultLang, localizedPath } from '../../i18n/utils';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = getSite(lang).projects;
+const chokeHref = localizedPath(lang, 'choke');
+const upcoming = [t.soon];
 ---
 
 <section class="projects" id="projects">
   <div class="container">
     <div class="header" data-reveal>
-      <h2>Projects we support</h2>
-      <span class="header-tag">Open source</span>
+      <h2>{t.title}</h2>
+      <span class="header-tag">{t.tag}</span>
     </div>
     <div class="grid">
-      <a class="card featured" data-reveal href="/choke">
+      <a class="card featured" data-reveal href={chokeHref}>
         <div class="corner-glow" aria-hidden="true"></div>
         <div class="featured-inner">
           <div class="card-top">
@@ -31,10 +41,7 @@ const upcoming = ['More projects\ncoming soon'];
             <span class="pill">active</span>
           </div>
           <h3>Choke</h3>
-          <p>
-            Open-source, real-time BJJ match scoring app. Run the table from your phone and
-            stream the scoreboard live to spectators — no accounts needed.
-          </p>
+          <p>{t.chokeDesc}</p>
           <span class="link">protolayer.io/choke →</span>
         </div>
       </a>

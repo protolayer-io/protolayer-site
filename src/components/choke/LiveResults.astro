@@ -1,5 +1,14 @@
 ---
 import { LIVE_URL, NPUB } from './config';
+import { getChoke, type Lang } from '../../i18n/ui';
+import { defaultLang } from '../../i18n/utils';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = getChoke(lang).live;
 ---
 
 <section class="live container" id="live">
@@ -7,24 +16,16 @@ import { LIVE_URL, NPUB } from './config';
     <div class="copy">
       <div class="live-badge">
         <span class="dot"></span>
-        Live at bjjscore.live
+        {t.badge}
       </div>
-      <h2 class="section-title">Your matches, on the big screen.</h2>
-      <p class="lead">
-        Every match you score publishes to{' '}
-        <a class="gold-link" href={LIVE_URL} target="_blank" rel="noopener">bjjscore.live</a> in real
-        time — perfect for projecting on a venue screen or sharing with people who can't be there.
-      </p>
+      <h2 class="section-title">{t.title}</h2>
+      <p class="lead" set:html={t.leadHtml} />
       <div class="howto">
-        <p class="howto-title">How people find your matches</p>
+        <p class="howto-title">{t.howtoTitle}</p>
         <ol>
-          <li>Open the <b>Account</b> tab and copy your public key (npub).</li>
-          <li>
-            Share it — or open{' '}
-            <a class="gold-link" href={LIVE_URL} target="_blank" rel="noopener">bjjscore.live</a> and
-            paste it in.
-          </li>
-          <li>Every match you run shows up there automatically.</li>
+          <li set:html={t.step1Html} />
+          <li set:html={t.step2Html} />
+          <li>{t.step3}</li>
         </ol>
         <div class="npub">
           <span>{NPUB}</span>
@@ -43,7 +44,7 @@ import { LIVE_URL, NPUB } from './config';
         <div class="status">
           <span class="tick-dot"></span>
           <span class="clock">02:36</span>
-          <span class="pill">IN PROGRESS</span>
+          <span class="pill">{t.inProgress}</span>
         </div>
         <div class="scores">
           <div class="fighter red-side">
@@ -57,7 +58,7 @@ import { LIVE_URL, NPUB } from './config';
             <div class="stats"><span>A:0</span><span>P:0</span></div>
           </div>
         </div>
-        <div class="board-footer">Match #3b3f · updating live</div>
+        <div class="board-footer">Match #3b3f · {t.updating}</div>
       </div>
     </div>
   </div>
@@ -115,7 +116,7 @@ import { LIVE_URL, NPUB } from './config';
     margin: 18px 0 22px;
   }
 
-  .gold-link {
+  .lead :global(.gold-link) {
     color: var(--gold);
   }
 
@@ -140,8 +141,12 @@ import { LIVE_URL, NPUB } from './config';
     color: var(--muted);
   }
 
-  .howto b {
+  .howto :global(b) {
     color: var(--text);
+  }
+
+  .howto :global(.gold-link) {
+    color: var(--gold);
   }
 
   .npub {

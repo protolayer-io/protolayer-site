@@ -1,61 +1,32 @@
 ---
-import { LIVE_URL } from './config';
+import { getChoke, type Lang } from '../../i18n/ui';
+import { defaultLang } from '../../i18n/utils';
 
-interface Card {
-  tint: 'green' | 'gold';
-  icon: string;
-  title: string;
-  desc: string;
+interface Props {
+  lang?: Lang;
 }
 
-const cards: Card[] = [
-  {
-    tint: 'green',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 2 L3 14h7l-1 8 10-12h-7z" fill="#22C55E"></path></svg>',
-    title: 'Instant real-time scoring',
-    desc: 'Big thumb-friendly buttons for takedowns, sweeps, passes, mounts, advantages and penalties. Every tap updates the board immediately.',
-  },
-  {
-    tint: 'green',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="13" r="8" stroke="#22C55E" stroke-width="2"></circle><path d="M12 9v4l3 2M9 2h6" stroke="#22C55E" stroke-width="2" stroke-linecap="round"></path></svg>',
-    title: 'Countdown timer',
-    desc: 'Set the round length once, then run every match with a clean second-by-second countdown, pause and finish controls.',
-  },
-  {
-    tint: 'gold',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="#F5B800" stroke-width="2"></circle><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18" stroke="#F5B800" stroke-width="1.6"></path></svg>',
-    title: 'Public live results',
-    desc: `Scores publish straight to <a class="gold-link" href="${LIVE_URL}" target="_blank" rel="noopener">bjjscore.live</a> — spectators and remote coaches follow along with zero setup.`,
-  },
-  {
-    tint: 'green',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 L19 6v6c0 4-3 6.5-7 8-4-1.5-7-4-7-8V6z" stroke="#22C55E" stroke-width="2" stroke-linejoin="round"></path><path d="M9 12l2 2 4-4" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
-    title: 'No accounts, ever',
-    desc: 'Open the app and start scoring. Your identity is a secure key generated on your device — no sign-up, no email, no password.',
-  },
-  {
-    tint: 'green',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="3" stroke="#22C55E" stroke-width="2"></circle><circle cx="17" cy="17" r="3" stroke="#22C55E" stroke-width="2"></circle><path d="M9.5 9.5l5 5" stroke="#22C55E" stroke-width="2"></path></svg>',
-    title: 'Team scoring, safely',
-    desc: 'Hand a match to a helper with a one-off match key — they score on their phone without ever touching your private key.',
-  },
-  {
-    tint: 'green',
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3H4v4M16 3h4v4M8 21H4v-4M16 21h4v-4" stroke="#22C55E" stroke-width="2" stroke-linecap="round"></path><circle cx="12" cy="12" r="3" stroke="#22C55E" stroke-width="2"></circle></svg>',
-    title: 'Submission tracking',
-    desc: 'Finish a match by submission and log the technique — armbar, RNC, triangle and more — for a complete record of the bout.',
-  },
+const { lang = defaultLang } = Astro.props;
+const t = getChoke(lang).features;
+
+// Icons + tints are locale-independent; zipped with the translated card copy by index.
+const icons: { tint: 'green' | 'gold'; icon: string }[] = [
+  { tint: 'green', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 2 L3 14h7l-1 8 10-12h-7z" fill="#22C55E"></path></svg>' },
+  { tint: 'green', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="13" r="8" stroke="#22C55E" stroke-width="2"></circle><path d="M12 9v4l3 2M9 2h6" stroke="#22C55E" stroke-width="2" stroke-linecap="round"></path></svg>' },
+  { tint: 'gold', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="#F5B800" stroke-width="2"></circle><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18" stroke="#F5B800" stroke-width="1.6"></path></svg>' },
+  { tint: 'green', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 L19 6v6c0 4-3 6.5-7 8-4-1.5-7-4-7-8V6z" stroke="#22C55E" stroke-width="2" stroke-linejoin="round"></path><path d="M9 12l2 2 4-4" stroke="#22C55E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>' },
+  { tint: 'green', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="3" stroke="#22C55E" stroke-width="2"></circle><circle cx="17" cy="17" r="3" stroke="#22C55E" stroke-width="2"></circle><path d="M9.5 9.5l5 5" stroke="#22C55E" stroke-width="2"></path></svg>' },
+  { tint: 'green', icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3H4v4M16 3h4v4M8 21H4v-4M16 21h4v-4" stroke="#22C55E" stroke-width="2" stroke-linecap="round"></path><circle cx="12" cy="12" r="3" stroke="#22C55E" stroke-width="2"></circle></svg>' },
 ];
+
+const cards = t.cards.map((card, i) => ({ ...card, ...icons[i] }));
 ---
 
 <section class="features container" id="features">
   <div class="head">
-    <span class="kicker">// Everything the table needs</span>
-    <h2 class="section-title">Run the scoring table from one phone.</h2>
-    <p>
-      Purpose-built for gym smokers, in-house tournaments and open mats where a full timing rig is
-      overkill.
-    </p>
+    <span class="kicker">{t.kicker}</span>
+    <h2 class="section-title">{t.title}</h2>
+    <p>{t.sub}</p>
   </div>
   <div class="grid">
     {

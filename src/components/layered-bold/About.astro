@@ -1,17 +1,21 @@
 ---
 // Design 1b — centered about section.
+import { getSite, type Lang } from '../../i18n/ui';
+import { defaultLang } from '../../i18n/utils';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = getSite(lang).about;
 ---
 
 <section class="about" id="about">
   <div class="container">
-    <p class="mono-label label" data-reveal>About</p>
-    <h2 data-reveal>A technology company building the layers others build on</h2>
-    <p class="copy" data-reveal>
-      ProtoLayer OÜ is a technology company registered in Estonia, dedicated to the development
-      and support of open-source software and modular digital infrastructure. Our focus is
-      modular architecture, distributed systems, and protocol experimentation for emerging
-      digital ecosystems.
-    </p>
+    <p class="mono-label label" data-reveal>{t.label}</p>
+    <h2 data-reveal>{t.title}</h2>
+    <p class="copy" data-reveal>{t.copy}</p>
   </div>
 </section>
 

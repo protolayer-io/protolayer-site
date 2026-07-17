@@ -1,5 +1,14 @@
 ---
 import PlayBadge from './PlayBadge.astro';
+import { getChoke, type Lang } from '../../i18n/ui';
+import { defaultLang } from '../../i18n/utils';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = getChoke(lang).cta;
 ---
 
 <section class="cta container">
@@ -7,10 +16,10 @@ import PlayBadge from './PlayBadge.astro';
     <div class="banner-glow" aria-hidden="true"></div>
     <div class="inner">
       <div>
-        <h2>Ready to run your next event?</h2>
-        <p>Download Choke, create a match, and put the scoreboard where everyone can see it.</p>
+        <h2>{t.title}</h2>
+        <p>{t.subtitle}</p>
       </div>
-      <PlayBadge variant="ink" />
+      <PlayBadge variant="ink" lang={lang} />
     </div>
   </div>
 </section>
