@@ -117,8 +117,13 @@ img {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   * {
     animation: none !important;
+    transition: none !important;
   }
 }
 
