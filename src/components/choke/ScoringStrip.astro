@@ -1,0 +1,69 @@
+---
+// IBJJF scoring reference strip between hero and features.
+---
+
+<div class="strip">
+  <div class="container inner">
+    <span class="label">IBJJF-style scoring, built in</span>
+    <div class="items">
+      <span><b class="green">+2</b> Takedown</span>
+      <span><b class="green">+3</b> Guard pass</span>
+      <span><b class="green">+4</b> Mount / Back</span>
+      <span><b class="gold">ADV</b> Advantage</span>
+      <span><b class="red">PEN</b> Penalty</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .strip {
+    position: relative;
+    z-index: 10;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .inner {
+    padding-top: 22px;
+    padding-bottom: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted-2);
+  }
+
+  .items {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .items span {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--muted);
+  }
+
+  .green {
+    color: var(--green);
+  }
+
+  .gold {
+    color: var(--gold);
+  }
+
+  .red {
+    color: var(--red);
+  }
+</style>

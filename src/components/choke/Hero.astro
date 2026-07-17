@@ -1,0 +1,258 @@
+---
+import PlayBadge from './PlayBadge.astro';
+import { LIVE_URL } from './config';
+---
+
+<header class="hero container">
+  <div class="copy">
+    <div class="live-badge">
+      <span class="dot"></span>
+      Real-time BJJ scoring
+    </div>
+    <h1>Score the match.<br /><span class="accent">Everyone watches</span><br />it live.</h1>
+    <p class="lead">
+      Choke is the fastest way to run and score Brazilian Jiu-Jitsu matches from your phone. Tap
+      points as they happen — the scoreboard streams instantly to spectators, coaches and the
+      projector.
+    </p>
+    <div class="actions">
+      <PlayBadge />
+      <a class="watch" href={LIVE_URL} target="_blank" rel="noopener">
+        Watch a live board
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M5 12h14M13 6l6 6-6 6"
+            stroke="#22C55E"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </a>
+    </div>
+    <div class="checks">
+      <span><b>✓</b> Free &amp; open source</span>
+      <span><b>✓</b> No account needed</span>
+      <span><b>✓</b> Public live results</span>
+    </div>
+  </div>
+
+  <div class="visual">
+    <div class="browser">
+      <div class="chrome">
+        <span class="win-dot red"></span>
+        <span class="win-dot gold"></span>
+        <span class="win-dot green"></span>
+        <span class="chrome-label">Live scoring · Match #3b3f</span>
+      </div>
+      <img src="/choke/screen-scoring.jpg" alt="Choke live scoring screen" loading="eager" />
+    </div>
+    <div class="phone">
+      <img src="/choke/screen-home.jpg" alt="Choke match list" loading="eager" />
+    </div>
+  </div>
+</header>
+
+<style>
+  .hero {
+    position: relative;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 48px;
+    align-items: center;
+    padding-top: 64px;
+    padding-bottom: 90px;
+  }
+
+  .live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--green);
+    background: rgba(27, 163, 78, 0.12);
+    border: 1px solid rgba(27, 163, 78, 0.3);
+    padding: 7px 13px;
+    border-radius: 100px;
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse-dot 1.6s infinite;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(42px, 5.5vw, 66px);
+    line-height: 1.02;
+    letter-spacing: -2px;
+    margin-top: 22px;
+  }
+
+  .accent {
+    color: var(--green);
+  }
+
+  .lead {
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 520px;
+    margin-top: 24px;
+    text-wrap: pretty;
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 34px;
+    flex-wrap: wrap;
+  }
+
+  .watch {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--text);
+    font-weight: 700;
+    font-size: 16px;
+    padding: 14px 8px;
+  }
+
+  .watch:hover {
+    color: var(--green-light);
+  }
+
+  .checks {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin-top: 38px;
+    font-size: 14px;
+    color: var(--muted-2);
+    font-weight: 600;
+    flex-wrap: wrap;
+  }
+
+  .checks span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .checks b {
+    color: var(--green);
+  }
+
+  .visual {
+    position: relative;
+    height: 520px;
+  }
+
+  .browser {
+    position: absolute;
+    top: 34px;
+    right: 0;
+    width: 560px;
+    max-width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border-strong);
+    box-shadow: 0 40px 90px rgba(0, 0, 0, 0.6);
+    background: var(--bg);
+  }
+
+  .chrome {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 11px 15px;
+    background: var(--surface);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .win-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+  }
+
+  .win-dot.red {
+    background: var(--red);
+  }
+
+  .win-dot.gold {
+    background: var(--gold);
+  }
+
+  .win-dot.green {
+    background: var(--green-deep);
+  }
+
+  .chrome-label {
+    margin-left: 12px;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    color: var(--muted-2);
+  }
+
+  .browser img {
+    display: block;
+    width: 100%;
+  }
+
+  .phone {
+    position: absolute;
+    bottom: -30px;
+    left: -8px;
+    width: 172px;
+    border-radius: 26px;
+    padding: 7px;
+    background: #000;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.65);
+    animation: floaty 6s ease-in-out infinite;
+  }
+
+  .phone img {
+    display: block;
+    width: 100%;
+    border-radius: 20px;
+  }
+
+  @media (max-width: 1024px) {
+    .hero {
+      grid-template-columns: 1fr;
+      padding-bottom: 70px;
+    }
+
+    .visual {
+      height: auto;
+      max-width: 640px;
+    }
+
+    .browser {
+      position: relative;
+      top: 0;
+    }
+
+    .phone {
+      bottom: -24px;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .phone {
+      display: none;
+    }
+  }
+</style>

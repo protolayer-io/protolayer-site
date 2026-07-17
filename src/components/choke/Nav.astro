@@ -1,0 +1,105 @@
+---
+import Logo from './Logo.astro';
+import { PLAY_URL } from './config';
+
+const links = [
+  ['#features', 'Features'],
+  ['#how', 'How it works'],
+  ['#live', 'Live results'],
+  ['#screens', 'Screens'],
+  ['#faq', 'FAQ'],
+];
+---
+
+<nav class="nav container">
+  <a class="brand" href="/choke">
+    <Logo size={38} />
+    <span class="name">Choke</span>
+  </a>
+  <div class="right">
+    <div class="links">
+      {links.map(([href, label]) => <a href={href}>{label}</a>)}
+    </div>
+    <a class="cta" href={PLAY_URL} target="_blank" rel="noopener">
+      <svg width="15" height="17" viewBox="0 0 15 17" fill="none" aria-hidden="true">
+        <path d="M1 1.2 L13 8.5 L1 15.8 Z" fill="#fff"></path>
+      </svg>
+      Get the app
+    </a>
+  </div>
+</nav>
+
+<style>
+  .nav {
+    position: relative;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 26px;
+    padding-bottom: 26px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text);
+  }
+
+  .brand:hover {
+    color: var(--text);
+  }
+
+  .name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 21px;
+    letter-spacing: -0.5px;
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+    gap: 34px;
+  }
+
+  .links {
+    display: flex;
+    gap: 30px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .links a {
+    color: var(--muted);
+  }
+
+  .links a:hover {
+    color: var(--text);
+  }
+
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green-deep);
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 11px 18px;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(27, 163, 78, 0.35);
+  }
+
+  .cta:hover {
+    color: #fff;
+    background: var(--green);
+  }
+
+  @media (max-width: 900px) {
+    .links {
+      display: none;
+    }
+  }
+</style>

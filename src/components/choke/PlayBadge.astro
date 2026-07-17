@@ -1,0 +1,74 @@
+---
+// Google Play store badge. `dark` (hero) sits on the page background,
+// `ink` (CTA banner) sits on the green gradient.
+import { PLAY_URL } from './config';
+
+interface Props {
+  variant?: 'dark' | 'ink';
+}
+
+const { variant = 'dark' } = Astro.props;
+---
+
+<a class:list={['badge', variant]} href={PLAY_URL} target="_blank" rel="noopener">
+  <svg width="26" height="28" viewBox="0 0 26 28" fill="none" aria-hidden="true">
+    <path d="M2 2 L21 14 L2 26 Z" fill="#22C55E"></path>
+    <path d="M2 2 L14 9 L2 16 Z" fill="#4ADE80" opacity="0.5"></path>
+  </svg>
+  <span class="label">
+    <span class="small">GET IT ON</span>
+    <span class="big">Google Play</span>
+  </span>
+</a>
+
+<style>
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: #fff;
+    transition: transform 0.15s ease;
+  }
+
+  .badge:hover {
+    color: #fff;
+    transform: translateY(-1px);
+  }
+
+  .dark {
+    background: #000;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 13px 22px 13px 18px;
+    border-radius: 13px;
+  }
+
+  .ink {
+    background: var(--bg);
+    padding: 15px 26px 15px 20px;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .label {
+    text-align: left;
+    line-height: 1.15;
+  }
+
+  .small {
+    display: block;
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .big {
+    display: block;
+    font-size: 18px;
+    font-weight: 700;
+    font-family: var(--font-display);
+  }
+
+  .ink .big {
+    font-size: 19px;
+  }
+</style>

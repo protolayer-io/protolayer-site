@@ -1,0 +1,147 @@
+---
+import Logo from './Logo.astro';
+import { PLAY_URL, LIVE_URL, GITHUB_URL } from './config';
+---
+
+<footer class="footer">
+  <div class="container top">
+    <div class="brand-col">
+      <div class="brand">
+        <Logo size={34} />
+        <span class="name">Choke</span>
+      </div>
+      <p>
+        A modern, decentralized BJJ match scoring app. Built by{' '}
+        <a class="inline-link" href="https://protolayer.io" target="_blank" rel="noopener">ProtoLayer.io</a>
+      </p>
+    </div>
+    <div class="cols">
+      <div class="col">
+        <p class="col-title">Product</p>
+        <div class="col-links">
+          <a href="#features">Features</a>
+          <a href="#how">How it works</a>
+          <a href={LIVE_URL} target="_blank" rel="noopener">Live results</a>
+          <a href={PLAY_URL} target="_blank" rel="noopener">Get on Google Play</a>
+        </div>
+      </div>
+      <div class="col">
+        <p class="col-title">Project</p>
+        <div class="col-links">
+          <a href={GITHUB_URL} target="_blank" rel="noopener">GitHub</a>
+          <a href="/">ProtoLayer</a>
+          <a href={`${GITHUB_URL}/blob/main/PRIVACY.md`} target="_blank" rel="noopener">Privacy</a>
+          <a href={`${GITHUB_URL}/blob/main/LICENSE`} target="_blank" rel="noopener">
+            License · GPL-3.0
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="container bottom-inner">
+      <span>© 2026 ProtoLayer OÜ · Reg. no. 17464577</span>
+      <span class="mono">Nostr · kind 31415</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    position: relative;
+    z-index: 10;
+    border-top: 1px solid var(--border);
+    margin-top: 70px;
+  }
+
+  .top {
+    padding-top: 48px;
+    padding-bottom: 48px;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .brand-col {
+    max-width: 320px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 14px;
+  }
+
+  .name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 19px;
+  }
+
+  .brand-col p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--muted-2);
+  }
+
+  .inline-link {
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  .inline-link:hover {
+    color: var(--green-light);
+  }
+
+  .cols {
+    display: flex;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+
+  .col-title {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted-2);
+    margin-bottom: 14px;
+  }
+
+  .col-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 14.5px;
+    font-weight: 600;
+  }
+
+  .col-links a {
+    color: var(--muted);
+  }
+
+  .col-links a:hover {
+    color: var(--text);
+  }
+
+  .bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .bottom-inner {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: var(--muted-2);
+  }
+
+  .mono {
+    font-family: var(--font-mono);
+  }
+</style>

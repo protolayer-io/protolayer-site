@@ -1,0 +1,140 @@
+/* Choke landing tokens & base — source: Choke Landing.dc.html (option 1a) */
+
+:root {
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --bg: #0b1020;
+  --surface: #121a2e;
+  --surface-deep: #05070e;
+  --border: rgba(255, 255, 255, 0.07);
+  --border-strong: rgba(255, 255, 255, 0.1);
+  --text: #ffffff;
+  --muted: #9ba6bf;
+  --muted-2: #6e7a96;
+  --green: #22c55e;
+  --green-deep: #1ba34e;
+  --green-light: #4ade80;
+  --gold: #f5b800;
+  --red: #e5484d;
+  --blue: #3b82f6;
+
+  --page-pad: 40px;
+  --container: 1240px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--green);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--green-light);
+}
+
+::selection {
+  background: rgba(27, 163, 78, 0.35);
+  color: #fff;
+}
+
+img {
+  max-width: 100%;
+}
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding-left: var(--page-pad);
+  padding-right: var(--page-pad);
+}
+
+/* Section kicker — "// label" mono heading used by every section */
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--green);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(32px, 4.5vw, 44px);
+  line-height: 1.08;
+  letter-spacing: -1.2px;
+  margin-top: 14px;
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes tick {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@media (max-width: 720px) {
+  :root {
+    --page-pad: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --page-pad: 20px;
+  }
+}
