@@ -53,6 +53,17 @@ const en = {
       subtitle: `For inquiries, partnerships, and open-source collaboration.`,
     },
     footer: { tagline: `Building modular digital infrastructure.`, reg: `Reg. no.` },
+    // Strings unique to the "terminal-editorial" design variant.
+    te: {
+      heroEyebrow: `Estonia · Est. 2026`,
+      heroTitleHtml: `Building modular<br><span class="accent">digital infrastructure</span>`,
+      principlesLabel: `Principles`,
+      aboutLabel: `01 — About`,
+      aboutTitle: `A technology company, not a product shop`,
+      aboutTags: [`◇ Distributed systems`, `◇ Open protocols`, `◇ Resilient infra`],
+      projectsTag: `02 — Open source`,
+      chokeDesc: `Open-source, real-time BJJ match scoring app with live public scoreboards.`,
+    },
     meta: {
       title: `ProtoLayer OÜ — Building modular digital infrastructure`,
       desc: `Estonian technology company focused on open-source software, digital infrastructure, and modular technical systems.`,
@@ -203,6 +214,16 @@ const es: typeof en = {
       subtitle: `Para consultas, alianzas y colaboración en código abierto.`,
     },
     footer: { tagline: `Construyendo infraestructura digital modular.`, reg: `Reg. núm.` },
+    te: {
+      heroEyebrow: `Estonia · Est. 2026`,
+      heroTitleHtml: `Construyendo infraestructura<br><span class="accent">digital modular</span>`,
+      principlesLabel: `Principios`,
+      aboutLabel: `01 — Nosotros`,
+      aboutTitle: `Una empresa de tecnología, no una fábrica de productos`,
+      aboutTags: [`◇ Sistemas distribuidos`, `◇ Protocolos abiertos`, `◇ Infra resiliente`],
+      projectsTag: `02 — Código abierto`,
+      chokeDesc: `App de código abierto para puntuar combates de BJJ en tiempo real con marcadores públicos en vivo.`,
+    },
     meta: {
       title: `ProtoLayer OÜ — Construyendo infraestructura digital modular`,
       desc: `Empresa de tecnología estonia enfocada en software de código abierto, infraestructura digital y sistemas técnicos modulares.`,
@@ -353,6 +374,16 @@ const pt: typeof en = {
       subtitle: `Para consultas, parcerias e colaboração em código aberto.`,
     },
     footer: { tagline: `Construindo infraestrutura digital modular.`, reg: `Reg. nº` },
+    te: {
+      heroEyebrow: `Estônia · Est. 2026`,
+      heroTitleHtml: `Construindo infraestrutura<br><span class="accent">digital modular</span>`,
+      principlesLabel: `Princípios`,
+      aboutLabel: `01 — Sobre`,
+      aboutTitle: `Uma empresa de tecnologia, não uma fábrica de produtos`,
+      aboutTags: [`◇ Sistemas distribuídos`, `◇ Protocolos abertos`, `◇ Infra resiliente`],
+      projectsTag: `02 — Código aberto`,
+      chokeDesc: `App de código aberto para pontuar lutas de BJJ em tempo real com placares públicos ao vivo.`,
+    },
     meta: {
       title: `ProtoLayer OÜ — Construindo infraestrutura digital modular`,
       desc: `Empresa de tecnologia estoniana focada em software de código aberto, infraestrutura digital e sistemas técnicos modulares.`,

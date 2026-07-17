@@ -1,23 +1,27 @@
 ---
 // Design 1a — two-column about band on a raised surface.
-const tags = ['◇ Distributed systems', '◇ Open protocols', '◇ Resilient infra'];
+import { getSite, type Lang } from '../../i18n/ui';
+import { defaultLang } from '../../i18n/utils';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = defaultLang } = Astro.props;
+const site = getSite(lang);
+const te = site.te;
 ---
 
 <section class="about" id="about">
   <div class="about-inner container">
     <div data-reveal>
-      <p class="mono-label label">01 — About</p>
-      <h2>A technology company, not a product shop</h2>
+      <p class="mono-label label">{te.aboutLabel}</p>
+      <h2>{te.aboutTitle}</h2>
     </div>
     <div data-reveal>
-      <p class="copy">
-        ProtoLayer OÜ is a technology company registered in Estonia, dedicated to the development
-        and support of open-source software and modular digital infrastructure. Our focus is
-        modular architecture, distributed systems, and protocol experimentation for emerging
-        digital ecosystems.
-      </p>
+      <p class="copy">{site.about.copy}</p>
       <div class="tags">
-        {tags.map((tag) => <span>{tag}</span>)}
+        {te.aboutTags.map((tag) => <span>{tag}</span>)}
       </div>
     </div>
   </div>

@@ -1,6 +1,17 @@
 ---
 // Design 1a "Terminal Editorial" — two-column hero with animated grid + terminal.
 import Terminal from '../Terminal.astro';
+import { getSite, type Lang } from '../../i18n/ui';
+import { defaultLang } from '../../i18n/utils';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = defaultLang } = Astro.props;
+const site = getSite(lang);
+const t = site.hero;
+const te = site.te;
 ---
 
 <section class="hero">
@@ -9,18 +20,13 @@ import Terminal from '../Terminal.astro';
   <div class="hero-inner container">
     <div>
       <p class="eyebrow" data-reveal>
-        <span class="eyebrow-line"></span>Estonia · Est. 2026
+        <span class="eyebrow-line"></span>{te.heroEyebrow}
       </p>
-      <h1 data-reveal>
-        Building modular<br /><span class="accent">digital infrastructure</span>
-      </h1>
-      <p class="subcopy" data-reveal>
-        We design and operate the technical layers that enable resilient, interoperable, and
-        scalable digital systems.
-      </p>
+      <h1 data-reveal set:html={te.heroTitleHtml} />
+      <p class="subcopy" data-reveal>{t.subcopy}</p>
       <div class="actions" data-reveal>
-        <a class="btn btn-primary" href="#projects">Explore projects</a>
-        <a class="btn btn-ghost" href="#about">Learn more</a>
+        <a class="btn btn-primary" href="#projects">{t.explore}</a>
+        <a class="btn btn-ghost" href="#about">{t.learn}</a>
       </div>
     </div>
     <Terminal />
@@ -91,7 +97,7 @@ import Terminal from '../Terminal.astro';
     margin-bottom: 22px;
   }
 
-  .accent {
+  h1 :global(.accent) {
     color: var(--brand);
   }
 

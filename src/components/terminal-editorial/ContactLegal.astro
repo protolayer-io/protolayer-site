@@ -1,20 +1,29 @@
 ---
 // Design 1a — combined legal + contact surface panel.
 import { CONTACT_EMAIL, REGISTRY_CODE, REGISTERED_ADDRESS } from '../../site.config';
+import { getSite, type Lang } from '../../i18n/ui';
+import { defaultLang } from '../../i18n/utils';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = defaultLang } = Astro.props;
+const site = getSite(lang);
 ---
 
 <section class="contact-legal">
   <div class="container">
     <div class="panel" data-reveal>
       <div id="legal">
-        <p class="mono-label label">Legal</p>
+        <p class="mono-label label">{site.nav.legal}</p>
         <p class="legal-text">
-          ProtoLayer OÜ · Reg. no. {REGISTRY_CODE}<br />
+          ProtoLayer OÜ · {site.footer.reg} {REGISTRY_CODE}<br />
           {REGISTERED_ADDRESS}
         </p>
       </div>
       <div class="contact" id="contact">
-        <p class="mono-label label">Contact</p>
+        <p class="mono-label label">{site.nav.contact}</p>
         <a class="email" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL} →</a>
       </div>
     </div>

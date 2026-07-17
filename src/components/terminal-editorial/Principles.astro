@@ -1,16 +1,20 @@
 ---
 // Design 1a — four principles as emerald top-border columns.
-const principles = [
-  { title: 'Modular', copy: 'Every piece is self-contained and composable. Nothing is monolithic.' },
-  { title: 'Open', copy: 'Verifiable code and protocols. Transparency is infrastructure.' },
-  { title: 'Resilient', copy: 'Built to survive failure, scale, and time.' },
-  { title: 'Foundational', copy: 'We build base layers, not surface applications.' },
-];
+import { getSite, type Lang } from '../../i18n/ui';
+import { defaultLang } from '../../i18n/utils';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = defaultLang } = Astro.props;
+const site = getSite(lang);
+const principles = site.principles;
 ---
 
 <section class="principles">
   <div class="container">
-    <p class="mono-label label" data-reveal>Principles</p>
+    <p class="mono-label label" data-reveal>{site.te.principlesLabel}</p>
     <div class="grid">
       {
         principles.map((principle) => (
