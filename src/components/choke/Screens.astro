@@ -1,0 +1,117 @@
+---
+// App screenshots gallery — four phone frames plus two wide detail shots.
+const phones = [
+  { src: '/choke/screen-home.jpg', alt: 'Match list', caption: 'Match dashboard' },
+  { src: '/choke/screen-settings.jpg', alt: 'Settings', caption: 'Match settings' },
+  { src: '/choke/screen-account.jpg', alt: 'Account', caption: 'Your key & identity' },
+  { src: '/choke/screen-empty.jpg', alt: 'Empty state', caption: 'Ready for the next one' },
+];
+
+const wide = [
+  { src: '/choke/screen-howended.jpg', alt: 'Finish a match' },
+  { src: '/choke/screen-technique.jpg', alt: 'Technique picker' },
+];
+---
+
+<section class="screens container" id="screens">
+  <div class="head">
+    <span class="kicker">// A closer look</span>
+    <h2 class="section-title">Clean, fast, and made for the mat.</h2>
+  </div>
+  <div class="phones">
+    {
+      phones.map((shot) => (
+        <figure class="phone-item">
+          <div class="frame">
+            <img src={shot.src} alt={shot.alt} loading="lazy" />
+          </div>
+          <figcaption>{shot.caption}</figcaption>
+        </figure>
+      ))
+    }
+  </div>
+  <div class="wide">
+    {
+      wide.map((shot) => (
+        <div class="wide-item">
+          <img src={shot.src} alt={shot.alt} loading="lazy" />
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .screens {
+    position: relative;
+    z-index: 10;
+    padding-top: 96px;
+    padding-bottom: 40px;
+  }
+
+  .head {
+    max-width: 620px;
+  }
+
+  .phones {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 44px;
+  }
+
+  .phone-item {
+    text-align: center;
+  }
+
+  .frame {
+    border-radius: 26px;
+    padding: 7px;
+    background: #000;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+  }
+
+  .frame img {
+    display: block;
+    width: 100%;
+    border-radius: 20px;
+  }
+
+  figcaption {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--muted);
+    margin-top: 14px;
+  }
+
+  .wide {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .wide-item {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border-strong);
+  }
+
+  .wide-item img {
+    display: block;
+    width: 100%;
+  }
+
+  @media (max-width: 1024px) {
+    .phones {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 720px) {
+    .wide {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

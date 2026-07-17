@@ -1,5 +1,5 @@
 ---
-// Design 1b — bento grid: large featured Mostro tile + a dashed "coming soon" slot.
+// Design 1b — bento grid: large featured Choke tile + a dashed "coming soon" slot.
 const upcoming = ['More projects\ncoming soon'];
 ---
 
@@ -10,7 +10,7 @@ const upcoming = ['More projects\ncoming soon'];
       <span class="header-tag">Open source</span>
     </div>
     <div class="grid">
-      <a class="card featured" data-reveal href="https://mostro.network" target="_blank" rel="noopener">
+      <a class="card featured" data-reveal href="/choke">
         <div class="corner-glow" aria-hidden="true"></div>
         <div class="featured-inner">
           <div class="card-top">
@@ -25,19 +25,17 @@ const upcoming = ['More projects\ncoming soon'];
               stroke-linejoin="round"
               aria-hidden="true"
             >
-              <circle cx="12" cy="5" r="2.4"></circle>
-              <circle cx="5" cy="18" r="2.4"></circle>
-              <circle cx="19" cy="18" r="2.4"></circle>
-              <path d="M12 7.4v4M10.5 13.2 6.6 16M13.5 13.2 17.4 16"></path>
+              <path d="M12 3 19 6.2v5.6c0 4.4-2.9 7.3-7 8.7-4.1-1.4-7-4.3-7-8.7V6.2Z"></path>
+              <path d="M9 11.8l2.2 2.2 4.3-4.3"></path>
             </svg>
             <span class="pill">active</span>
           </div>
-          <h3>Mostro</h3>
+          <h3>Choke</h3>
           <p>
-            Open-source peer-to-peer protocol for resilient digital exchange systems, built on
-            open standards.
+            Open-source, real-time BJJ match scoring app. Run the table from your phone and
+            stream the scoreboard live to spectators — no accounts needed.
           </p>
-          <span class="link">mostro.network →</span>
+          <span class="link">protolayer.io/choke →</span>
         </div>
       </a>
       {

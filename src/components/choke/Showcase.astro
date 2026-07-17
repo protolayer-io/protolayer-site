@@ -1,0 +1,127 @@
+---
+// Live scoring showcase — the scoring screen next to the point breakdown.
+const points = [
+  { value: '+2', gold: false, label: 'Takedown / Sweep' },
+  { value: '+3', gold: false, label: 'Guard pass' },
+  { value: '+4', gold: false, label: 'Mount / Back take' },
+  { value: 'ADV / PEN', gold: true, label: 'Advantages & penalties' },
+];
+---
+
+<section class="showcase container">
+  <div class="panel">
+    <div class="copy">
+      <span class="kicker">// The scoring screen</span>
+      <h2 class="section-title">Built for the pace of a real match.</h2>
+      <p class="lead">
+        Competitor scores are huge and colour-coded so the whole room can read them across the mat.
+        Points, advantages and penalties each have a dedicated button — no menus, no fumbling.
+      </p>
+      <div class="points">
+        {
+          points.map((point) => (
+            <div class="point">
+              <span class:list={['value', { gold: point.gold }]}>{point.value}</span>
+              <span class="label">{point.label}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+    <div class="shot">
+      <img src="/choke/screen-scoring.jpg" alt="Choke scoring interface" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .showcase {
+    position: relative;
+    z-index: 10;
+    padding-top: 96px;
+    padding-bottom: 40px;
+  }
+
+  .panel {
+    background: linear-gradient(160deg, #101a33, var(--bg));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 26px;
+    padding: 52px;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 48px;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .section-title {
+    font-size: clamp(30px, 4vw, 40px);
+    letter-spacing: -1px;
+    line-height: 1.1;
+  }
+
+  .lead {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--muted);
+    margin: 18px 0 26px;
+  }
+
+  .points {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .point {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+
+  .value {
+    font-family: var(--font-mono);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--green);
+  }
+
+  .value.gold {
+    font-size: 16px;
+    color: var(--gold);
+  }
+
+  .label {
+    display: block;
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 600;
+    margin-top: 2px;
+  }
+
+  .shot {
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid var(--border-strong);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5);
+  }
+
+  .shot img {
+    display: block;
+    width: 100%;
+  }
+
+  @media (max-width: 1024px) {
+    .panel {
+      grid-template-columns: 1fr;
+      padding: 36px 28px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .points {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

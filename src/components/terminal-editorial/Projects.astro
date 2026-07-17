@@ -1,5 +1,5 @@
 ---
-// Design 1a — projects grid: Mostro card + a dashed "coming soon" slot.
+// Design 1a — projects grid: Choke card + a dashed "coming soon" slot.
 const upcoming = ['More projects\ncoming soon'];
 ---
 
@@ -10,7 +10,7 @@ const upcoming = ['More projects\ncoming soon'];
       <span class="header-tag">02 — Open source</span>
     </div>
     <div class="grid">
-      <a class="card project-card" data-reveal href="https://mostro.network" target="_blank" rel="noopener">
+      <a class="card project-card" data-reveal href="/choke">
         <div class="card-top">
           <svg
             width="30"
@@ -23,16 +23,14 @@ const upcoming = ['More projects\ncoming soon'];
             stroke-linejoin="round"
             aria-hidden="true"
           >
-            <circle cx="12" cy="5" r="2.4"></circle>
-            <circle cx="5" cy="18" r="2.4"></circle>
-            <circle cx="19" cy="18" r="2.4"></circle>
-            <path d="M12 7.4v4M10.5 13.2 6.6 16M13.5 13.2 17.4 16"></path>
+            <path d="M12 3 19 6.2v5.6c0 4.4-2.9 7.3-7 8.7-4.1-1.4-7-4.3-7-8.7V6.2Z"></path>
+            <path d="M9 11.8l2.2 2.2 4.3-4.3"></path>
           </svg>
           <span class="pill">active</span>
         </div>
-        <h3>Mostro</h3>
-        <p>Open-source peer-to-peer protocol for resilient digital exchange systems.</p>
-        <span class="link">mostro.network →</span>
+        <h3>Choke</h3>
+        <p>Open-source, real-time BJJ match scoring app with live public scoreboards.</p>
+        <span class="link">protolayer.io/choke →</span>
       </a>
       {
         upcoming.map((text) => (

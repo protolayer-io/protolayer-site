@@ -1,0 +1,112 @@
+---
+import { LIVE_URL } from './config';
+
+const steps = [
+  {
+    number: '01',
+    gold: false,
+    title: 'Create the match',
+    desc: 'Enter both competitors and the round duration. A match gets a short shareable ID like <span class="match-id">#3b3f</span>.',
+  },
+  {
+    number: '02',
+    gold: false,
+    title: 'Score it live',
+    desc: 'Start the clock and tap points as the action unfolds. Undo mistakes, add advantages and penalties, finish by submission.',
+  },
+  {
+    number: '03',
+    gold: true,
+    title: 'Share the board',
+    desc: `The scoreboard is already live on <a class="gold-link" href="${LIVE_URL}" target="_blank" rel="noopener">bjjscore.live</a>. Send the link or your key and anyone can follow the results.`,
+  },
+];
+---
+
+<section class="how container" id="how">
+  <div class="head">
+    <span class="kicker">// From bracket to broadcast in 3 steps</span>
+    <h2 class="section-title">Set up faster than the fighters warm up.</h2>
+  </div>
+  <div class="grid">
+    {
+      steps.map((step) => (
+        <article class="step">
+          <span class:list={['number', { gold: step.gold }]}>{step.number}</span>
+          <h3>{step.title}</h3>
+          <p set:html={step.desc} />
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .how {
+    position: relative;
+    z-index: 10;
+    padding-top: 96px;
+    padding-bottom: 40px;
+  }
+
+  .head {
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 52px;
+  }
+
+  .step {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px 28px;
+  }
+
+  .number {
+    font-family: var(--font-display);
+    font-size: 52px;
+    font-weight: 700;
+    color: rgba(34, 197, 94, 0.22);
+    line-height: 1;
+  }
+
+  .number.gold {
+    color: rgba(245, 184, 0, 0.28);
+  }
+
+  h3 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+    margin: 10px 0 8px;
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  p :global(.match-id) {
+    font-family: var(--font-mono);
+    color: var(--green);
+  }
+
+  p :global(.gold-link) {
+    color: var(--gold);
+  }
+
+  @media (max-width: 900px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
