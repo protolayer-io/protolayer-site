@@ -7,7 +7,6 @@ import { getChoke, type Lang } from '../../i18n/ui';
 import { defaultLang, langCodes, localizedPath } from '../../i18n/utils';
 import Nav from './Nav.astro';
 import Hero from './Hero.astro';
-import ScoringStrip from './ScoringStrip.astro';
 import Features from './Features.astro';
 import HowItWorks from './HowItWorks.astro';
 import Showcase from './Showcase.astro';
@@ -68,7 +67,6 @@ const defaultHref = new URL(localizedPath(defaultLang, 'choke'), Astro.site).hre
       <Nav lang={lang} />
       <main>
         <Hero lang={lang} />
-        <ScoringStrip lang={lang} />
         <Features lang={lang} />
         <HowItWorks lang={lang} />
         <Showcase lang={lang} />

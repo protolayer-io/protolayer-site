@@ -88,14 +88,6 @@ const en = {
       check2: `No account needed`,
       check3: `Public live results`,
     },
-    strip: {
-      label: `IBJJF-style scoring, built in`,
-      takedown: `Takedown`,
-      guardpass: `Guard pass`,
-      mount: `Mount / Back`,
-      advantage: `Advantage`,
-      penalty: `Penalty`,
-    },
     features: {
       kicker: `// Everything the table needs`,
       title: `Run the scoring table from one phone.`,
@@ -110,12 +102,13 @@ const en = {
       ],
     },
     how: {
-      kicker: `// From bracket to broadcast in 3 steps`,
+      kicker: `// From bracket to broadcast in 4 steps`,
       title: `Set up faster than the fighters warm up.`,
       steps: [
+        { title: `Connect your account`, desc: `Before you create any matches, open <b>Account</b> in the menu, copy your public key (npub) and add it on <a class="gold-link" href="https://bjjscore.live" target="_blank" rel="noopener">bjjscore.live</a>. From then on, everything you publish from Choke shows live on the scoreboard.` },
         { title: `Create the match`, desc: `Enter both competitors and the round duration. A match gets a short shareable ID like <span class="match-id">#3b3f</span>.` },
         { title: `Score it live`, desc: `Start the clock and tap points as the action unfolds. Undo mistakes, add advantages and penalties, finish by submission.` },
-        { title: `Share the board`, desc: `The scoreboard is already live on <a class="gold-link" href="https://bjjscore.live" target="_blank" rel="noopener">bjjscore.live</a>. Send the link or your key and anyone can follow the results.` },
+        { title: `Share the board`, desc: `The scoreboard is already live on <a class="gold-link" href="https://bjjscore.live" target="_blank" rel="noopener">bjjscore.live</a>. Send the link or your public key and anyone can follow the results.` },
       ],
     },
     showcase: {
@@ -248,14 +241,6 @@ const es: typeof en = {
       check2: `Sin necesidad de cuenta`,
       check3: `Resultados públicos en vivo`,
     },
-    strip: {
-      label: `Puntuación estilo IBJJF, integrada`,
-      takedown: `Derribo`,
-      guardpass: `Pase de guardia`,
-      mount: `Montada / Espalda`,
-      advantage: `Ventaja`,
-      penalty: `Penalización`,
-    },
     features: {
       kicker: `// Todo lo que la mesa necesita`,
       title: `Dirige la mesa de puntuación desde un solo teléfono.`,
@@ -264,18 +249,19 @@ const es: typeof en = {
         { title: `Puntuación instantánea en tiempo real`, desc: `Botones grandes y cómodos para derribos, raspadas, pases, montadas, ventajas y penalizaciones. Cada toque actualiza el marcador al instante.` },
         { title: `Temporizador de cuenta regresiva`, desc: `Configura la duración del round una vez y dirige cada combate con una cuenta regresiva segundo a segundo, con controles de pausa y fin.` },
         { title: `Resultados públicos en vivo`, desc: `Los resultados se publican directamente en <a class="gold-link" href="https://bjjscore.live" target="_blank" rel="noopener">bjjscore.live</a> — espectadores y entrenadores a distancia siguen todo sin ninguna configuración.` },
-        { title: `Sin cuentas, nunca`, desc: `Abre la app y empieza a puntuar. Tu identidad es una clave segura generada en tu dispositivo — sin registro, sin correo, sin contraseña.` },
+        { title: `Sin cuentas`, desc: `Abre la app y empieza a puntuar. Tu identidad es una clave segura generada en tu dispositivo — sin registro, sin correo, sin contraseña.` },
         { title: `Puntuación en equipo, con seguridad`, desc: `Delega un combate a un ayudante con una clave de combate de un solo uso — puntúa desde su teléfono sin tocar nunca tu clave privada.` },
         { title: `Registro de sumisiones`, desc: `Termina un combate por sumisión y registra la técnica — armbar, mata león, triángulo y más — para un historial completo del combate.` },
       ],
     },
     how: {
-      kicker: `// De la llave a la transmisión en 3 pasos`,
+      kicker: `// De la llave a la transmisión en 4 pasos`,
       title: `Prepáralo más rápido de lo que los luchadores calientan.`,
       steps: [
+        { title: `Conecta tu cuenta`, desc: `Antes de crear combates, ve a <b>Cuenta</b> en el menú, copia tu clave pública (npub) y cárgala en <a class="gold-link" href="https://bjjscore.live" target="_blank" rel="noopener">bjjscore.live</a>. Así, todo lo que publiques desde Choke se mostrará en tiempo real en el marcador.` },
         { title: `Crea el combate`, desc: `Ingresa a los dos competidores y la duración del round. El combate recibe un ID corto y compartible como <span class="match-id">#3b3f</span>.` },
         { title: `Puntúa en vivo`, desc: `Inicia el reloj y marca los puntos según ocurre la acción. Deshaz errores, añade ventajas y penalizaciones, termina por sumisión.` },
-        { title: `Comparte el marcador`, desc: `El marcador ya está en vivo en <a class="gold-link" href="https://bjjscore.live" target="_blank" rel="noopener">bjjscore.live</a>. Envía el enlace o tu clave y cualquiera puede seguir los resultados.` },
+        { title: `Comparte el marcador`, desc: `El marcador ya está en vivo en <a class="gold-link" href="https://bjjscore.live" target="_blank" rel="noopener">bjjscore.live</a>. Envía el enlace o tu clave pública y cualquiera puede seguir los resultados.` },
       ],
     },
     showcase: {
@@ -408,14 +394,6 @@ const pt: typeof en = {
       check2: `Sem necessidade de conta`,
       check3: `Resultados públicos ao vivo`,
     },
-    strip: {
-      label: `Pontuação estilo IBJJF, integrada`,
-      takedown: `Queda`,
-      guardpass: `Passagem de guarda`,
-      mount: `Montada / Costas`,
-      advantage: `Vantagem`,
-      penalty: `Punição`,
-    },
     features: {
       kicker: `// Tudo o que a mesa precisa`,
       title: `Comande a mesa de pontuação com um só celular.`,
@@ -430,12 +408,13 @@ const pt: typeof en = {
       ],
     },
     how: {
-      kicker: `// Da chave à transmissão em 3 passos`,
+      kicker: `// Da chave à transmissão em 4 passos`,
       title: `Configure mais rápido do que os lutadores aquecem.`,
       steps: [
+        { title: `Conecte sua conta`, desc: `Antes de criar lutas, abra <b>Conta</b> no menu, copie sua chave pública (npub) e carregue no <a class="gold-link" href="https://bjjscore.live" target="_blank" rel="noopener">bjjscore.live</a>. A partir daí, tudo o que você publicar pelo Choke aparece em tempo real no placar.` },
         { title: `Crie a luta`, desc: `Insira os dois competidores e a duração do round. A luta recebe um ID curto e compartilhável como <span class="match-id">#3b3f</span>.` },
         { title: `Pontue ao vivo`, desc: `Inicie o relógio e marque os pontos conforme a ação acontece. Desfaça erros, adicione vantagens e punições, termine por finalização.` },
-        { title: `Compartilhe o placar`, desc: `O placar já está ao vivo no <a class="gold-link" href="https://bjjscore.live" target="_blank" rel="noopener">bjjscore.live</a>. Envie o link ou a sua chave e qualquer um pode acompanhar os resultados.` },
+        { title: `Compartilhe o placar`, desc: `O placar já está ao vivo no <a class="gold-link" href="https://bjjscore.live" target="_blank" rel="noopener">bjjscore.live</a>. Envie o link ou a sua chave pública e qualquer um pode acompanhar os resultados.` },
       ],
     },
     showcase: {
