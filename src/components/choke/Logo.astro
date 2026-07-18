@@ -1,18 +1,17 @@
 ---
-// Choke shield mark on a green gradient tile.
+// Choke "C" brand mark. The mark's lower arc is near-black, so it sits on a
+// light grey tile to stay legible against the dark page background.
 interface Props {
   size?: number;
 }
 
 const { size = 38 } = Astro.props;
-const iconSize = Math.round(size * 0.53);
+const markHeight = Math.round(size * 0.66);
 const radius = Math.round(size * 0.29);
 ---
 
 <span class="logo" style={`width:${size}px; height:${size}px; border-radius:${radius}px;`}>
-  <svg width={iconSize} height={iconSize} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-    <path d="M12 2 L20 6 V12 C20 17 16.5 20.5 12 22 C7.5 20.5 4 17 4 12 V6 Z" fill="#0B1020"></path>
-  </svg>
+  <img src="/choke/logo-c.png" alt="" width="256" height="282" style={`height:${markHeight}px;`} />
 </span>
 
 <style>
@@ -21,7 +20,12 @@ const radius = Math.round(size * 0.29);
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    background: linear-gradient(145deg, var(--green), var(--green-deep));
-    box-shadow: 0 0 24px rgba(27, 163, 78, 0.5);
+    background: #d6dae2;
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+  }
+
+  .logo img {
+    display: block;
+    width: auto;
   }
 </style>
