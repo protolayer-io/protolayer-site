@@ -128,8 +128,6 @@ const en = {
       step1Html: `In the app, open <b>Account</b> and tap <b>Share live board</b>.`,
       step2Html: `Choke builds a <a class="gold-link" href="https://bjjscore.live" target="_blank" rel="noopener">bjjscore.live</a> link with your key already baked in.`,
       step3: `Send that one link — they're watching your matches live, with nothing to paste.`,
-      inProgress: `IN PROGRESS`,
-      updating: `updating live`,
     },
     screens: {
       kicker: `// A closer look`,
@@ -280,8 +278,6 @@ const es: typeof en = {
       step1Html: `En la app, abre <b>Cuenta</b> y toca <b>Compartir marcador</b>.`,
       step2Html: `Choke arma un enlace de <a class="gold-link" href="https://bjjscore.live" target="_blank" rel="noopener">bjjscore.live</a> con tu clave ya incluida.`,
       step3: `Envía ese único enlace — ya están viendo tus combates en vivo, sin pegar nada.`,
-      inProgress: `EN CURSO`,
-      updating: `actualizando en vivo`,
     },
     screens: {
       kicker: `// Una mirada de cerca`,
@@ -432,8 +428,6 @@ const pt: typeof en = {
       step1Html: `No app, abra <b>Conta</b> e toque em <b>Compartilhar placar</b>.`,
       step2Html: `O Choke monta um link do <a class="gold-link" href="https://bjjscore.live" target="_blank" rel="noopener">bjjscore.live</a> com a sua chave já incluída.`,
       step3: `Envie esse único link — já estão vendo suas lutas ao vivo, sem colar nada.`,
-      inProgress: `EM ANDAMENTO`,
-      updating: `atualizando ao vivo`,
     },
     screens: {
       kicker: `// Um olhar de perto`,
