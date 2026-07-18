@@ -261,7 +261,7 @@ const t = getChoke(lang).live;
 
   .scores {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 16px;
   }
 
@@ -341,7 +341,7 @@ const t = getChoke(lang).live;
 
   @media (max-width: 1024px) {
     .grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
     }
   }
 

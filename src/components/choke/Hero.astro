@@ -236,18 +236,20 @@ const t = getChoke(lang).hero;
 
   @media (max-width: 1024px) {
     .hero {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       padding-bottom: 70px;
     }
 
     .visual {
       height: auto;
       max-width: 640px;
+      min-width: 0;
     }
 
     .browser {
       position: relative;
       top: 0;
+      width: 100%;
     }
 
     .phone {
