@@ -11,7 +11,7 @@ const t = getChoke(lang).how;
 
 const steps = t.steps.map((step, i) => ({
   number: String(i + 1).padStart(2, '0'),
-  gold: i === 2,
+  gold: i === t.steps.length - 1,
   ...step,
 }));
 ---
@@ -50,7 +50,7 @@ const steps = t.steps.map((step, i) => ({
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 24px;
     margin-top: 52px;
   }
@@ -97,7 +97,17 @@ const steps = t.steps.map((step, i) => ({
     color: var(--gold);
   }
 
-  @media (max-width: 900px) {
+  p :global(b) {
+    color: var(--text);
+  }
+
+  @media (max-width: 1024px) {
+    .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 560px) {
     .grid {
       grid-template-columns: 1fr;
     }
