@@ -1,5 +1,5 @@
 ---
-import { LIVE_URL, NPUB } from './config';
+import { LIVE_URL } from './config';
 import { getChoke, type Lang } from '../../i18n/ui';
 import { defaultLang } from '../../i18n/utils';
 
@@ -27,9 +27,6 @@ const t = getChoke(lang).live;
           <li set:html={t.step2Html} />
           <li>{t.step3}</li>
         </ol>
-        <div class="npub">
-          <span>{NPUB}</span>
-        </div>
       </div>
     </div>
 
@@ -147,30 +144,6 @@ const t = getChoke(lang).live;
 
   .howto :global(.gold-link) {
     color: var(--gold);
-  }
-
-  .npub {
-    margin-top: 14px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: rgba(0, 0, 0, 0.35);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 10px;
-    padding: 10px 12px;
-    overflow: hidden;
-  }
-
-  .npub span {
-    flex: 1;
-    min-width: 0;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--green);
-    font-weight: 700;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   .board {
