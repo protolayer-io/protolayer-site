@@ -37,26 +37,7 @@ const t = getChoke(lang).live;
         <span class="win-dot green"></span>
         <div class="url">🔒 bjjscore.live</div>
       </div>
-      <div class="board-body">
-        <div class="status">
-          <span class="tick-dot"></span>
-          <span class="clock">02:36</span>
-          <span class="pill">{t.inProgress}</span>
-        </div>
-        <div class="scores">
-          <div class="fighter red-side">
-            <div class="fighter-name"><span class="fighter-dot"></span>Gordon Ryan</div>
-            <div class="score">26</div>
-            <div class="stats"><span>A:1</span><span>P:0</span></div>
-          </div>
-          <div class="fighter blue-side">
-            <div class="fighter-name"><span class="fighter-dot"></span>Mike Tyson</div>
-            <div class="score">0</div>
-            <div class="stats"><span>A:0</span><span>P:0</span></div>
-          </div>
-        </div>
-        <div class="board-footer">Match #3b3f · {t.updating}</div>
-      </div>
+      <img class="board-shot" src="/choke/gordon-mike.png" alt={t.title} loading="lazy" />
     </div>
   </div>
 </section>
@@ -193,134 +174,14 @@ const t = getChoke(lang).live;
     color: var(--muted);
   }
 
-  .board-body {
-    padding: 30px 28px 34px;
-  }
-
-  .status {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-    margin-bottom: 22px;
-  }
-
-  .tick-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--green);
-    animation: tick 1.2s infinite;
-  }
-
-  .clock {
-    font-family: var(--font-mono);
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--text);
-    letter-spacing: 1px;
-  }
-
-  .pill {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--green);
-    background: rgba(27, 163, 78, 0.14);
-    border: 1px solid rgba(27, 163, 78, 0.35);
-    padding: 3px 10px;
-    border-radius: 100px;
-  }
-
-  .scores {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 16px;
-  }
-
-  .fighter {
-    border-radius: 16px;
-    padding: 20px;
-    text-align: center;
-  }
-
-  .red-side {
-    background: rgba(229, 72, 77, 0.08);
-    border: 1px solid rgba(229, 72, 77, 0.35);
-  }
-
-  .blue-side {
-    background: rgba(59, 130, 246, 0.08);
-    border: 1px solid rgba(59, 130, 246, 0.35);
-  }
-
-  .fighter-name {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 7px;
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 6px;
-  }
-
-  .fighter-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-  }
-
-  .red-side .fighter-dot {
-    background: var(--red);
-  }
-
-  .blue-side .fighter-dot {
-    background: var(--blue);
-  }
-
-  .score {
-    font-family: var(--font-display);
-    font-size: 72px;
-    font-weight: 700;
-    line-height: 1;
-  }
-
-  .red-side .score {
-    color: var(--red);
-  }
-
-  .blue-side .score {
-    color: var(--blue);
-  }
-
-  .stats {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    margin-top: 8px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--muted);
-  }
-
-  .board-footer {
-    text-align: center;
-    margin-top: 18px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--muted-2);
+  .board-shot {
+    display: block;
+    width: 100%;
   }
 
   @media (max-width: 1024px) {
     .grid {
       grid-template-columns: minmax(0, 1fr);
-    }
-  }
-
-  @media (max-width: 480px) {
-    .score {
-      font-size: 56px;
     }
   }
 </style>
