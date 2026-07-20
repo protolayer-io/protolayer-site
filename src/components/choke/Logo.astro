@@ -1,17 +1,14 @@
 ---
-// Choke "C" brand mark. The mark's lower arc is near-black, so it sits on a
-// light grey tile to stay legible against the dark page background.
 interface Props {
   size?: number;
 }
 
 const { size = 38 } = Astro.props;
-const markHeight = Math.round(size * 0.66);
 const radius = Math.round(size * 0.29);
 ---
 
 <span class="logo" style={`width:${size}px; height:${size}px; border-radius:${radius}px;`}>
-  <img src="/choke/logo-c.png" alt="" width="256" height="282" style={`height:${markHeight}px;`} />
+  <img src="/choke/choke-logo-transp-256.png" alt="" width="256" height="256" />
 </span>
 
 <style>
@@ -20,12 +17,15 @@ const radius = Math.round(size * 0.29);
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    background: #d6dae2;
+    overflow: hidden;
+    background: #D6DAE2;
     box-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
   }
 
   .logo img {
     display: block;
-    width: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 </style>
