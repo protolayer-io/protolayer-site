@@ -1,5 +1,5 @@
 ---
-// Design 1b — four numbered principle cards with hover-lift on a raised strip.
+// Design 1b — four numbered service cards with hover-lift on a raised strip.
 import { getSite, type Lang } from '../../i18n/ui';
 import { defaultLang } from '../../i18n/utils';
 
@@ -8,20 +8,20 @@ interface Props {
 }
 
 const { lang = defaultLang } = Astro.props;
-const principles = getSite(lang).principles.map((p, i) => ({
+const services = getSite(lang).services.map((service, i) => ({
   number: String(i + 1).padStart(2, '0'),
-  ...p,
+  ...service,
 }));
 ---
 
-<section class="principles">
+<section class="services">
   <div class="grid container">
     {
-      principles.map((principle) => (
+      services.map((service) => (
         <div class="card item" data-reveal>
-          <div class="number">{principle.number}</div>
-          <h3>{principle.title}</h3>
-          <p>{principle.copy}</p>
+          <div class="number">{service.number}</div>
+          <h3>{service.title}</h3>
+          <p>{service.copy}</p>
         </div>
       ))
     }
@@ -29,7 +29,7 @@ const principles = getSite(lang).principles.map((p, i) => ({
 </section>
 
 <style>
-  .principles {
+  .services {
     padding: 56px var(--page-pad);
     background: var(--surface-2);
     border-top: 1px solid var(--border-soft);

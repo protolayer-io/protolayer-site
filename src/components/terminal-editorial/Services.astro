@@ -1,5 +1,5 @@
 ---
-// Design 1a — four principles as emerald top-border columns.
+// Design 1a — four services as emerald top-border columns.
 import { getSite, type Lang } from '../../i18n/ui';
 import { defaultLang } from '../../i18n/utils';
 
@@ -9,18 +9,18 @@ interface Props {
 
 const { lang = defaultLang } = Astro.props;
 const site = getSite(lang);
-const principles = site.principles;
+const services = site.services;
 ---
 
-<section class="principles">
+<section class="services">
   <div class="container">
-    <p class="mono-label label" data-reveal>{site.te.principlesLabel}</p>
+    <p class="mono-label label" data-reveal>{site.te.servicesLabel}</p>
     <div class="grid">
       {
-        principles.map((principle) => (
+        services.map((service) => (
           <div class="item" data-reveal>
-            <h3>{principle.title}</h3>
-            <p>{principle.copy}</p>
+            <h3>{service.title}</h3>
+            <p>{service.copy}</p>
           </div>
         ))
       }
@@ -29,7 +29,7 @@ const principles = site.principles;
 </section>
 
 <style>
-  .principles {
+  .services {
     padding: 26px var(--page-pad) 60px;
   }
 
