@@ -5,8 +5,15 @@ import LangDetect from '../components/LangDetect.astro';
 import Seo from '../components/Seo.astro';
 import JsonLd from '../components/JsonLd.astro';
 import { getSite, type Lang } from '../i18n/ui';
-import { defaultLang } from '../i18n/utils';
-import { ADDRESS, CONTACT_EMAIL, REGISTRY_CODE, TAGLINE } from '../site.config';
+import { defaultLang, localizedPath } from '../i18n/utils';
+import {
+  ADDRESS,
+  CONTACT_EMAIL,
+  REGISTRY_CODE,
+  SITE_DESCRIPTION,
+  SITE_TITLE,
+  TAGLINE,
+} from '../site.config';
 
 interface Props {
   lang?: Lang;
@@ -23,6 +30,7 @@ const pageTitle = title ?? site.meta.title;
 const pageDescription = description ?? site.meta.desc;
 
 const siteUrl = Astro.site!.href;
+const canonical = new URL(localizedPath(lang, page), Astro.site).href;
 const schema = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -33,7 +41,7 @@ const schema = {
       legalName: 'ProtoLayer OÜ',
       url: siteUrl,
       slogan: TAGLINE,
-      description: site.meta.desc,
+      description: SITE_DESCRIPTION,
       email: CONTACT_EMAIL,
       logo: new URL('/logo-poster.jpg', Astro.site).href,
       taxID: REGISTRY_CODE,
@@ -45,14 +53,25 @@ const schema = {
         addressCountry: ADDRESS.country,
       },
     },
+    // Site-wide, so it stays identical across locales.
     {
       '@type': 'WebSite',
       '@id': `${siteUrl}#website`,
       url: siteUrl,
+      name: SITE_TITLE,
+      description: SITE_DESCRIPTION,
+      publisher: { '@id': `${siteUrl}#organization` },
+    },
+    // This locale's page hangs off the site-wide entity.
+    {
+      '@type': 'WebPage',
+      '@id': `${canonical}#webpage`,
+      url: canonical,
       name: pageTitle,
       description: pageDescription,
       inLanguage: lang,
-      publisher: { '@id': `${siteUrl}#organization` },
+      isPartOf: { '@id': `${siteUrl}#website` },
+      about: { '@id': `${siteUrl}#organization` },
     },
   ],
 };

@@ -103,6 +103,7 @@ const en = {
       lead: `Choke is the fastest way to run and score Brazilian Jiu-Jitsu matches from your phone. Tap points as they happen — the scoreboard streams instantly to spectators, coaches and the projector.`,
       watch: `Watch a live board`,
       scoringAlt: `Choke live scoring screen on a phone held in landscape`,
+      homeAlt: `Choke match list on a phone`,
       check1: `Free & open source`,
       check2: `No account needed`,
       check3: `Public live results`,
@@ -132,6 +133,7 @@ const en = {
     },
     showcase: {
       kicker: `// The scoring screen`,
+      shotAlt: `Choke scoring interface with per-competitor scores and point buttons`,
       title: `Built for the pace of a real match.`,
       lead: `Competitor scores are huge and colour-coded so the whole room can read them across the mat. Points, advantages and penalties each have a dedicated button — no menus, no fumbling.`,
       p1: `Takedown / Sweep`,
@@ -272,6 +274,7 @@ const es: typeof en = {
       lead: `Choke es la forma más rápida de dirigir y puntuar combates de Jiu-Jitsu brasileño desde tu teléfono. Marca los puntos al instante — el marcador se transmite en directo a espectadores, entrenadores y al proyector.`,
       watch: `Ver un marcador en vivo`,
       scoringAlt: `Pantalla de puntuación en vivo de Choke en un teléfono en horizontal`,
+      homeAlt: `Lista de combates de Choke en un teléfono`,
       check1: `Gratis y de código abierto`,
       check2: `Sin necesidad de cuenta`,
       check3: `Resultados públicos en vivo`,
@@ -301,6 +304,7 @@ const es: typeof en = {
     },
     showcase: {
       kicker: `// La pantalla de puntuación`,
+      shotAlt: `Interfaz de puntuación de Choke con las puntuaciones de cada competidor y los botones de puntos`,
       title: `Diseñada para el ritmo de un combate real.`,
       lead: `Las puntuaciones de cada competidor son enormes y con código de color para que toda la sala las lea desde el otro lado del tatami. Puntos, ventajas y penalizaciones tienen su propio botón — sin menús, sin enredos.`,
       p1: `Derribo / Raspada`,
@@ -441,6 +445,7 @@ const pt: typeof en = {
       lead: `O Choke é a forma mais rápida de conduzir e pontuar lutas de Jiu-Jítsu brasileiro pelo seu celular. Marque os pontos na hora — o placar é transmitido ao vivo para espectadores, treinadores e o projetor.`,
       watch: `Ver um placar ao vivo`,
       scoringAlt: `Tela de pontuação ao vivo do Choke em um celular na horizontal`,
+      homeAlt: `Lista de lutas do Choke em um celular`,
       check1: `Grátis e de código aberto`,
       check2: `Sem necessidade de conta`,
       check3: `Resultados públicos ao vivo`,
@@ -470,6 +475,7 @@ const pt: typeof en = {
     },
     showcase: {
       kicker: `// A tela de pontuação`,
+      shotAlt: `Interface de pontuação do Choke com as pontuações de cada competidor e os botões de pontos`,
       title: `Feita para o ritmo de uma luta real.`,
       lead: `As pontuações de cada competidor são enormes e com código de cores para que toda a sala leia do outro lado do tatame. Pontos, vantagens e punições têm um botão dedicado — sem menus, sem confusão.`,
       p1: `Queda / Raspagem`,
