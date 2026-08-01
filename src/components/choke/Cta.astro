@@ -1,5 +1,6 @@
 ---
 import PlayBadge from './PlayBadge.astro';
+import DesktopBadges from './DesktopBadges.astro';
 import { getChoke, type Lang } from '../../i18n/ui';
 import { defaultLang } from '../../i18n/utils';
 
@@ -19,7 +20,10 @@ const t = getChoke(lang).cta;
         <h2>{t.title}</h2>
         <p>{t.subtitle}</p>
       </div>
-      <PlayBadge variant="ink" lang={lang} />
+      <div class="downloads">
+        <PlayBadge variant="ink" lang={lang} />
+        <DesktopBadges variant="ink" lang={lang} />
+      </div>
     </div>
   </div>
 </section>
@@ -57,6 +61,13 @@ const t = getChoke(lang).cta;
     justify-content: space-between;
     gap: 32px;
     flex-wrap: wrap;
+  }
+
+  /* Google Play first, desktop builds underneath. */
+  .downloads {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   h2 {

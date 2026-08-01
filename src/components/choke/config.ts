@@ -5,6 +5,7 @@
 export const PLAY_URL = 'https://play.google.com/store/apps/details?id=io.protolayer.choke';
 export const LIVE_URL = 'https://bjjscore.live';
 export const GITHUB_URL = 'https://github.com/protolayer-io/choke';
+export const RELEASES_URL = 'https://github.com/protolayer-io/choke/releases/latest';
 
 export const CHOKE_TITLE = 'Choke — Real-time BJJ match scoring';
 export const CHOKE_DESCRIPTION =

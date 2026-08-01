@@ -91,6 +91,12 @@ const en = {
       getApp: `Get the app`,
     },
     getItOn: `GET IT ON`,
+    desktop: {
+      label: `Also available for desktop`,
+      linux: `Linux`,
+      windows: `Windows`,
+      hint: `Download the latest release`,
+    },
     hero: {
       badge: `Real-time BJJ scoring`,
       titleHtml: `Score the match.<br><span class="accent">Everyone watches</span><br>it live.`,
@@ -108,7 +114,7 @@ const en = {
         { title: `Instant real-time scoring`, desc: `Big thumb-friendly buttons for takedowns, sweeps, passes, mounts, advantages and penalties. Every tap updates the board immediately.` },
         { title: `Countdown timer`, desc: `Set the round length once, then run every match with a clean second-by-second countdown, pause and finish controls.` },
         { title: `Public live results`, desc: `Scores publish straight to <a class="gold-link" href="https://bjjscore.live" target="_blank" rel="noopener">bjjscore.live</a> — spectators and remote coaches follow along with zero setup.` },
-        { title: `No accounts, ever`, desc: `Open the app and start scoring. Your identity is a secure key generated on your device — no sign-up, no email, no password.` },
+        { title: `No accounts`, desc: `Open the app and start scoring. Your identity is a secure key generated on your device — no sign-up, no email, no password.` },
         { title: `Team scoring, safely`, desc: `Hand a match to a helper with a one-off match key — they score on their phone without ever touching your private key.` },
         { title: `Submission tracking`, desc: `Finish a match by submission and log the technique — armbar, RNC, triangle and more — for a complete record of the bout.` },
       ],
@@ -158,7 +164,7 @@ const en = {
         { q: `How do spectators watch the results?`, a: `Every match you score is published live to <a class="gold-link" href="https://bjjscore.live" target="_blank" rel="noopener">bjjscore.live</a>. Share the public key (npub) from your Account tab, and anyone can follow your matches there — great for projecting at a venue.` },
         { q: `Do I need to create an account?`, a: `No. When you install the app a secure keypair is generated on your device. That key is your identity — back it up and keep the private part (nsec) secret.` },
         { q: `Can a helper score matches for me?`, a: `Yes. You can delegate a single match to a teammate using an ephemeral match key, so multiple people can run the scoring table without ever sharing your private key.` },
-        { q: `Which platforms are supported?`, a: `Choke is available for Android on Google Play, with iOS in the works. It's built with Flutter, so the same experience runs everywhere.` },
+        { q: `Which platforms are supported?`, a: `Choke is available for Android on Google Play, and as a desktop build for Linux and Windows. It's built with Flutter, so the same experience runs everywhere.` },
       ],
     },
     cta: {
@@ -253,6 +259,12 @@ const es: typeof en = {
       getApp: `Descargar app`,
     },
     getItOn: `DISPONIBLE EN`,
+    desktop: {
+      label: `También disponible para escritorio`,
+      linux: `Linux`,
+      windows: `Windows`,
+      hint: `Descarga la última versión`,
+    },
     hero: {
       badge: `Puntuación de BJJ en tiempo real`,
       titleHtml: `Puntúa el combate.<br><span class="accent">Todos lo ven</span><br>en vivo.`,
@@ -320,7 +332,7 @@ const es: typeof en = {
         { q: `¿Cómo ven los espectadores los resultados?`, a: `Cada combate que puntúas se publica en vivo en <a class="gold-link" href="https://bjjscore.live" target="_blank" rel="noopener">bjjscore.live</a>. Comparte la clave pública (npub) de tu pestaña Cuenta y cualquiera puede seguir tus combates ahí — ideal para proyectar en un recinto.` },
         { q: `¿Necesito crear una cuenta?`, a: `No. Al instalar la app se genera un par de claves seguro en tu dispositivo. Esa clave es tu identidad — haz una copia de seguridad y mantén en secreto la parte privada (nsec).` },
         { q: `¿Puede un ayudante puntuar combates por mí?`, a: `Sí. Puedes delegar un solo combate a un compañero mediante una clave de combate efímera, para que varias personas dirijan la mesa sin compartir nunca tu clave privada.` },
-        { q: `¿Qué plataformas son compatibles?`, a: `Choke está disponible para Android en Google Play, con iOS en camino. Está hecho con Flutter, así que la misma experiencia funciona en todas partes.` },
+        { q: `¿Qué plataformas son compatibles?`, a: `Choke está disponible para Android en Google Play, y como aplicación de escritorio para Linux y Windows. Está hecho con Flutter, así que la misma experiencia funciona en todas partes.` },
       ],
     },
     cta: {
@@ -415,6 +427,12 @@ const pt: typeof en = {
       getApp: `Baixar o app`,
     },
     getItOn: `DISPONÍVEL NO`,
+    desktop: {
+      label: `Também disponível para desktop`,
+      linux: `Linux`,
+      windows: `Windows`,
+      hint: `Baixe a versão mais recente`,
+    },
     hero: {
       badge: `Pontuação de BJJ em tempo real`,
       titleHtml: `Pontue a luta.<br><span class="accent">Todos assistem</span><br>ao vivo.`,
@@ -432,7 +450,7 @@ const pt: typeof en = {
         { title: `Pontuação instantânea em tempo real`, desc: `Botões grandes e fáceis de tocar para quedas, raspagens, passagens, montadas, vantagens e punições. Cada toque atualiza o placar na hora.` },
         { title: `Cronômetro regressivo`, desc: `Defina a duração do round uma vez e conduza cada luta com uma contagem regressiva segundo a segundo, com controles de pausa e fim.` },
         { title: `Resultados públicos ao vivo`, desc: `Os placares são publicados direto no <a class="gold-link" href="https://bjjscore.live" target="_blank" rel="noopener">bjjscore.live</a> — espectadores e treinadores à distância acompanham sem nenhuma configuração.` },
-        { title: `Sem contas, nunca`, desc: `Abra o app e comece a pontuar. Sua identidade é uma chave segura gerada no seu dispositivo — sem cadastro, sem e-mail, sem senha.` },
+        { title: `Sem contas`, desc: `Abra o app e comece a pontuar. Sua identidade é uma chave segura gerada no seu dispositivo — sem cadastro, sem e-mail, sem senha.` },
         { title: `Pontuação em equipe, com segurança`, desc: `Delegue uma luta a um ajudante com uma chave de luta de uso único — ele pontua pelo celular dele sem nunca tocar na sua chave privada.` },
         { title: `Registro de finalizações`, desc: `Termine uma luta por finalização e registre a técnica — armbar, mata-leão, triângulo e mais — para um histórico completo da luta.` },
       ],
@@ -482,7 +500,7 @@ const pt: typeof en = {
         { q: `Como os espectadores acompanham os resultados?`, a: `Cada luta que você pontua é publicada ao vivo no <a class="gold-link" href="https://bjjscore.live" target="_blank" rel="noopener">bjjscore.live</a>. Compartilhe a chave pública (npub) da aba Conta e qualquer um pode acompanhar suas lutas lá — ótimo para projetar em um local.` },
         { q: `Preciso criar uma conta?`, a: `Não. Ao instalar o app, um par de chaves seguro é gerado no seu dispositivo. Essa chave é a sua identidade — faça um backup e mantenha a parte privada (nsec) em segredo.` },
         { q: `Um ajudante pode pontuar lutas por mim?`, a: `Sim. Você pode delegar uma única luta a um colega usando uma chave de luta efêmera, para que várias pessoas comandem a mesa sem nunca compartilhar sua chave privada.` },
-        { q: `Quais plataformas são suportadas?`, a: `O Choke está disponível para Android na Google Play, com iOS a caminho. Foi feito com Flutter, então a mesma experiência funciona em todos os lugares.` },
+        { q: `Quais plataformas são suportadas?`, a: `O Choke está disponível para Android na Google Play, e como aplicativo de desktop para Linux e Windows. Foi feito com Flutter, então a mesma experiência funciona em todos os lugares.` },
       ],
     },
     cta: {
