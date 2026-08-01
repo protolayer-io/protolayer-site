@@ -1,0 +1,79 @@
+---
+/**
+ * Canonical URL, hreflang alternates and social cards for a localized page.
+ *
+ * Both landings (ProtoLayer and Choke) render this so the two stay in sync.
+ */
+import { type Lang } from '../i18n/ui';
+import { defaultLang, langCodes, localizedPath } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+  page: 'home' | 'choke';
+  title: string;
+  description: string;
+  /** Site-root-relative path to the social card image. */
+  image: string;
+  imageAlt: string;
+  imageWidth: number;
+  imageHeight: number;
+  /** Brand shown as the source in social cards. */
+  siteName?: string;
+  /** Browser UI colour on mobile. */
+  themeColor?: string;
+}
+
+/** Open Graph wants full locale codes, not the bare language subtag. */
+const OG_LOCALES: Record<Lang, string> = {
+  en: 'en_US',
+  es: 'es_ES',
+  pt: 'pt_BR',
+};
+
+const {
+  lang,
+  page,
+  title,
+  description,
+  image,
+  imageAlt,
+  imageWidth,
+  imageHeight,
+  siteName = 'ProtoLayer',
+  themeColor = '#0B0F1A',
+} = Astro.props;
+
+const canonical = new URL(localizedPath(lang, page), Astro.site).href;
+const imageUrl = new URL(image, Astro.site).href;
+const alternates = langCodes.map((code) => ({
+  code,
+  href: new URL(localizedPath(code, page), Astro.site).href,
+}));
+const defaultHref = new URL(localizedPath(defaultLang, page), Astro.site).href;
+const otherLocales = langCodes.filter((code) => code !== lang);
+---
+
+<link rel="canonical" href={canonical} />
+
+{alternates.map((alt) => <link rel="alternate" hreflang={alt.code} href={alt.href} />)}
+<link rel="alternate" hreflang="x-default" href={defaultHref} />
+
+<meta name="theme-color" content={themeColor} />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:image:width" content={String(imageWidth)} />
+<meta property="og:image:height" content={String(imageHeight)} />
+<meta property="og:image:alt" content={imageAlt} />
+<meta property="og:locale" content={OG_LOCALES[lang]} />
+{otherLocales.map((code) => <meta property="og:locale:alternate" content={OG_LOCALES[code]} />)}
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+<meta name="twitter:image:alt" content={imageAlt} />

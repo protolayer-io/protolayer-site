@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://protolayer.io/sitemap-index.xml

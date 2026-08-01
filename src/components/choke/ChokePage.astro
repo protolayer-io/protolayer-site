@@ -3,8 +3,11 @@
 // Rendered by the /choke, /es/choke and /pt/choke route files.
 import '../../styles/choke.css';
 import LangDetect from '../LangDetect.astro';
+import Seo from '../Seo.astro';
+import JsonLd from '../JsonLd.astro';
 import { getChoke, type Lang } from '../../i18n/ui';
-import { defaultLang, langCodes, localizedPath } from '../../i18n/utils';
+import { defaultLang, localizedPath } from '../../i18n/utils';
+import { GITHUB_URL, LIVE_URL, PLAY_URL, RELEASES_URL } from './config';
 import Nav from './Nav.astro';
 import Hero from './Hero.astro';
 import Features from './Features.astro';
@@ -24,11 +27,44 @@ const { lang = defaultLang } = Astro.props;
 const t = getChoke(lang);
 
 const canonical = new URL(localizedPath(lang, 'choke'), Astro.site).href;
-const alternates = langCodes.map((code) => ({
-  code,
-  href: new URL(localizedPath(code, 'choke'), Astro.site).href,
-}));
-const defaultHref = new URL(localizedPath(defaultLang, 'choke'), Astro.site).href;
+
+/** FAQ answers carry markup for the page; schema.org wants plain text. */
+const stripTags = (html: string) => html.replace(/<[^>]*>/g, '');
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'SoftwareApplication',
+      '@id': `${canonical}#app`,
+      name: 'Choke',
+      description: t.meta.desc,
+      url: canonical,
+      applicationCategory: 'SportsApplication',
+      operatingSystem: 'Android, Linux, Windows',
+      inLanguage: lang,
+      license: 'https://spdx.org/licenses/GPL-3.0-only.html',
+      isAccessibleForFree: true,
+      downloadUrl: [PLAY_URL, RELEASES_URL],
+      installUrl: PLAY_URL,
+      codeRepository: GITHUB_URL,
+      screenshot: new URL('/choke/screen-scoring.jpg', Astro.site).href,
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+      author: { '@type': 'Organization', name: 'ProtoLayer OÜ', url: 'https://protolayer.io' },
+      sameAs: [GITHUB_URL, LIVE_URL],
+    },
+    {
+      '@type': 'FAQPage',
+      '@id': `${canonical}#faq`,
+      inLanguage: lang,
+      mainEntity: t.faq.items.map((item) => ({
+        '@type': 'Question',
+        name: item.q,
+        acceptedAnswer: { '@type': 'Answer', text: stripTags(item.a) },
+      })),
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -39,18 +75,23 @@ const defaultHref = new URL(localizedPath(defaultLang, 'choke'), Astro.site).hre
     <title>{t.meta.title}</title>
     <meta name="description" content={t.meta.desc} />
     <link rel="icon" type="image/png" href="/choke/favicon.png" />
-    <link rel="canonical" href={canonical} />
+    <link rel="apple-touch-icon" href="/choke/choke-logo-transp-256.png" />
 
-    {alternates.map((alt) => <link rel="alternate" hreflang={alt.code} href={alt.href} />)}
-    <link rel="alternate" hreflang="x-default" href={defaultHref} />
+    <Seo
+      lang={lang}
+      page="choke"
+      title={t.meta.title}
+      description={t.meta.desc}
+      image="/choke/og-choke.png"
+      imageAlt={t.meta.title}
+      imageWidth={1200}
+      imageHeight={630}
+      siteName="Choke"
+      themeColor="#0B1220"
+    />
+    <JsonLd schema={schema} />
 
     {lang === defaultLang && <LangDetect page="choke" />}
-
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={t.meta.title} />
-    <meta property="og:description" content={t.meta.desc} />
-    <meta property="og:url" content={canonical} />
-    <meta property="og:image" content="https://protolayer.io/choke/screen-scoring.jpg" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

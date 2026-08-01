@@ -1,0 +1,15 @@
+---
+/**
+ * Renders a schema.org graph as JSON-LD.
+ *
+ * `<` is escaped so a string in the graph can never close the script tag.
+ */
+interface Props {
+  schema: Record<string, unknown>;
+}
+
+const { schema } = Astro.props;
+const json = JSON.stringify(schema).replace(/</g, '\\u003c');
+---
+
+<script type="application/ld+json" is:inline set:html={json} />

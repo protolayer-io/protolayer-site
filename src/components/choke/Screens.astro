@@ -32,7 +32,14 @@ const wide = [
       phones.map((shot) => (
         <figure class="phone-item">
           <div class="frame">
-            <img src={shot.src} alt={shot.caption} loading="lazy" />
+            <img
+              src={shot.src}
+              alt={shot.caption}
+              width={576}
+              height={1280}
+              loading="lazy"
+              decoding="async"
+            />
           </div>
           <figcaption>{shot.caption}</figcaption>
         </figure>
@@ -43,7 +50,14 @@ const wide = [
     {
       wide.map((shot) => (
         <div class="wide-item">
-          <img src={shot.src} alt={shot.alt} loading="lazy" />
+          <img
+            src={shot.src}
+            alt={shot.alt}
+            width={1280}
+            height={576}
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       ))
     }

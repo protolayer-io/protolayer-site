@@ -16,6 +16,15 @@ export const SITE_DESCRIPTION =
 
 export const CONTACT_EMAIL = 'contact@protolayer.io';
 export const REGISTRY_CODE = '17464577';
-export const REGISTERED_ADDRESS = 'Järvevana tee 9, Tallinn, 11314, Estonia';
+/** Registered address, kept structured so schema.org and the footer agree. */
+export const ADDRESS = {
+  street: 'Järvevana tee 9',
+  locality: 'Tallinn',
+  postalCode: '11314',
+  country: 'EE',
+  countryName: 'Estonia',
+} as const;
+
+export const REGISTERED_ADDRESS = `${ADDRESS.street}, ${ADDRESS.locality}, ${ADDRESS.postalCode}, ${ADDRESS.countryName}`;
 export const COPYRIGHT_YEAR = 2026;
 export const TAGLINE = 'Free software. Open protocols.';

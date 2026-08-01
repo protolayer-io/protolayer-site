@@ -59,6 +59,9 @@ a:hover {
 
 img {
   max-width: 100%;
+  /* Lets images carry intrinsic width/height attributes (which reserve space
+     and avoid layout shift) without the attribute height distorting them. */
+  height: auto;
 }
 
 .container {

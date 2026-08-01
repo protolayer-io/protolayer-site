@@ -2,8 +2,18 @@
 import '../styles/tokens.css';
 import '../styles/global.css';
 import LangDetect from '../components/LangDetect.astro';
+import Seo from '../components/Seo.astro';
+import JsonLd from '../components/JsonLd.astro';
 import { getSite, type Lang } from '../i18n/ui';
-import { defaultLang, langCodes, localizedPath } from '../i18n/utils';
+import { defaultLang, localizedPath } from '../i18n/utils';
+import {
+  ADDRESS,
+  CONTACT_EMAIL,
+  REGISTRY_CODE,
+  SITE_DESCRIPTION,
+  SITE_TITLE,
+  TAGLINE,
+} from '../site.config';
 
 interface Props {
   lang?: Lang;
@@ -19,11 +29,52 @@ const site = getSite(lang);
 const pageTitle = title ?? site.meta.title;
 const pageDescription = description ?? site.meta.desc;
 
-const alternates = langCodes.map((code) => ({
-  code,
-  href: new URL(localizedPath(code, page), Astro.site).href,
-}));
-const defaultHref = new URL(localizedPath(defaultLang, page), Astro.site).href;
+const siteUrl = Astro.site!.href;
+const canonical = new URL(localizedPath(lang, page), Astro.site).href;
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${siteUrl}#organization`,
+      name: 'ProtoLayer',
+      legalName: 'ProtoLayer OÜ',
+      url: siteUrl,
+      slogan: TAGLINE,
+      description: SITE_DESCRIPTION,
+      email: CONTACT_EMAIL,
+      logo: new URL('/logo-poster.jpg', Astro.site).href,
+      taxID: REGISTRY_CODE,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: ADDRESS.street,
+        addressLocality: ADDRESS.locality,
+        postalCode: ADDRESS.postalCode,
+        addressCountry: ADDRESS.country,
+      },
+    },
+    // Site-wide, so it stays identical across locales.
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}#website`,
+      url: siteUrl,
+      name: SITE_TITLE,
+      description: SITE_DESCRIPTION,
+      publisher: { '@id': `${siteUrl}#organization` },
+    },
+    // This locale's page hangs off the site-wide entity.
+    {
+      '@type': 'WebPage',
+      '@id': `${canonical}#webpage`,
+      url: canonical,
+      name: pageTitle,
+      description: pageDescription,
+      inLanguage: lang,
+      isPartOf: { '@id': `${siteUrl}#website` },
+      about: { '@id': `${siteUrl}#organization` },
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -35,8 +86,17 @@ const defaultHref = new URL(localizedPath(defaultLang, page), Astro.site).href;
     <meta name="description" content={pageDescription} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    {alternates.map((alt) => <link rel="alternate" hreflang={alt.code} href={alt.href} />)}
-    <link rel="alternate" hreflang="x-default" href={defaultHref} />
+    <Seo
+      lang={lang}
+      page={page}
+      title={pageTitle}
+      description={pageDescription}
+      image="/og-protolayer.png"
+      imageAlt={`ProtoLayer — ${TAGLINE}`}
+      imageWidth={1200}
+      imageHeight={630}
+    />
+    <JsonLd schema={schema} />
 
     {lang === defaultLang && <LangDetect page={page} />}
 

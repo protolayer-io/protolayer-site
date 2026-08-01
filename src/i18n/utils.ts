@@ -16,7 +16,9 @@ type Page = 'home' | 'choke';
 /** Build the path for a given page in a given locale. */
 export function localizedPath(lang: Lang, page: Page): string {
   const prefix = lang === defaultLang ? '' : `/${lang}`;
-  if (page === 'choke') return `${prefix}/choke`;
+  // Trailing slash matches Astro's directory output, so links, canonical and
+  // sitemap all point at the served URL instead of one that 301-redirects.
+  if (page === 'choke') return `${prefix}/choke/`;
   return prefix === '' ? '/' : `${prefix}/`;
 }
 
