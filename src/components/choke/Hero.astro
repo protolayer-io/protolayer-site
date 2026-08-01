@@ -50,13 +50,24 @@ const t = getChoke(lang).hero;
         <img
           src="/choke/screen-scoring.jpg"
           alt={t.scoringAlt}
+          width={1280}
+          height={576}
           loading="eager"
+          fetchpriority="high"
+          decoding="async"
         />
       </div>
       <span class="home-bar"></span>
     </div>
     <div class="phone">
-      <img src="/choke/screen-home.jpg" alt="Choke match list" loading="eager" />
+      <img
+        src="/choke/screen-home.jpg"
+        alt="Choke match list"
+        width={576}
+        height={1280}
+        loading="eager"
+        decoding="async"
+      />
     </div>
   </div>
 </header>
