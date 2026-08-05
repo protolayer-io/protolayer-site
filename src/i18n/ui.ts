@@ -261,7 +261,7 @@ const es: typeof en = {
       faq: `FAQ`,
       getApp: `Descargar app`,
     },
-    getItOn: `DISPONIBLE EN`,
+    getItOn: `DESCARGAR EN`,
     desktop: {
       label: `También disponible para escritorio`,
       linux: `Linux`,
