@@ -1,6 +1,9 @@
 ---
-// Google Play store badge. `dark` (hero) sits on the page background,
-// `ink` (CTA banner) sits on the green gradient.
+// Official Google Play badge, self-hosted per locale (en / es-419 / pt-br).
+// The artwork must not be recoloured or cropped — Google's brand guidelines
+// bake the required clear space into the PNG, so the only knob is height.
+// `dark` (hero) sits on the page background, `ink` (CTA banner) sits on the
+// green gradient; both work because the badge is black with a light outline.
 import { PLAY_URL } from './config';
 import { getChoke, type Lang } from '../../i18n/ui';
 import { defaultLang } from '../../i18n/utils';
@@ -11,68 +14,38 @@ interface Props {
 }
 
 const { variant = 'dark', lang = defaultLang } = Astro.props;
-const getItOn = getChoke(lang).getItOn;
+const alt = getChoke(lang).playBadgeAlt;
+const src = `/choke/google-play-badge-${lang}.png`;
+// The hero badge is above the fold; the CTA one is at the bottom of the page.
+const loading = variant === 'dark' ? 'eager' : 'lazy';
 ---
 
 <a class:list={['badge', variant]} href={PLAY_URL} target="_blank" rel="noopener">
-  <svg width="26" height="28" viewBox="0 0 26 28" fill="none" aria-hidden="true">
-    <path d="M2 2 L21 14 L2 26 Z" fill="#22C55E"></path>
-    <path d="M2 2 L14 9 L2 16 Z" fill="#4ADE80" opacity="0.5"></path>
-  </svg>
-  <span class="label">
-    <span class="small">{getItOn}</span>
-    <span class="big">Google Play</span>
-  </span>
+  <img src={src} alt={alt} width="646" height="250" loading={loading} />
 </a>
 
 <style>
   .badge {
     display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    color: #fff;
     transition: transform 0.15s ease;
   }
 
   .badge:hover {
-    color: #fff;
     transform: translateY(-1px);
   }
 
-  .dark {
-    background: #000;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    padding: 13px 22px 13px 18px;
-    border-radius: 13px;
-  }
-
-  .ink {
-    background: var(--bg);
-    padding: 15px 26px 15px 20px;
-    border-radius: 14px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-  }
-
-  .label {
-    text-align: left;
-    line-height: 1.15;
-  }
-
-  .small {
+  .badge img {
     display: block;
-    font-size: 11px;
-    color: var(--muted);
-    font-weight: 600;
+    width: auto;
   }
 
-  .big {
-    display: block;
-    font-size: 18px;
-    font-weight: 700;
-    font-family: var(--font-display);
+  /* Heights include the badge's built-in clear space, so the visible artwork
+     lands comfortably above Google's 40px minimum. */
+  .dark img {
+    height: 60px;
   }
 
-  .ink .big {
-    font-size: 19px;
+  .ink img {
+    height: 64px;
   }
 </style>
