@@ -14,14 +14,14 @@ interface Props {
 }
 
 const { variant = 'dark', lang = defaultLang } = Astro.props;
-const getItOn = getChoke(lang).getItOn;
+const alt = getChoke(lang).playBadgeAlt;
 const src = `/choke/google-play-badge-${lang}.png`;
 // The hero badge is above the fold; the CTA one is at the bottom of the page.
 const loading = variant === 'dark' ? 'eager' : 'lazy';
 ---
 
 <a class:list={['badge', variant]} href={PLAY_URL} target="_blank" rel="noopener">
-  <img src={src} alt={`${getItOn} Google Play`} width="646" height="250" loading={loading} />
+  <img src={src} alt={alt} width="646" height="250" loading={loading} />
 </a>
 
 <style>

@@ -90,7 +90,7 @@ const en = {
       faq: `FAQ`,
       getApp: `Get the app`,
     },
-    getItOn: `GET IT ON`,
+    playBadgeAlt: `GET IT ON Google Play`,
     desktop: {
       label: `Also available for desktop`,
       linux: `Linux`,
@@ -261,7 +261,7 @@ const es: typeof en = {
       faq: `FAQ`,
       getApp: `Descargar app`,
     },
-    getItOn: `DESCARGAR EN`,
+    playBadgeAlt: `DESCARGAR EN Google Play`,
     desktop: {
       label: `También disponible para escritorio`,
       linux: `Linux`,
@@ -432,7 +432,7 @@ const pt: typeof en = {
       faq: `FAQ`,
       getApp: `Baixar o app`,
     },
-    getItOn: `DISPONÍVEL NO`,
+    playBadgeAlt: `DISPONÍVEL NO Google Play`,
     desktop: {
       label: `Também disponível para desktop`,
       linux: `Linux`,
