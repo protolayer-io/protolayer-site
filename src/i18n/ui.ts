@@ -95,6 +95,7 @@ const en = {
       label: `Also available for desktop`,
       linux: `Linux`,
       windows: `Windows`,
+      macos: `macOS`,
       hint: `Download the latest release`,
     },
     hero: {
@@ -167,7 +168,7 @@ const en = {
         { q: `How do spectators watch the results?`, a: `Every match you score is published live to <a class="gold-link" href="https://bjjscore.live" target="_blank" rel="noopener">bjjscore.live</a>. Share the public key (npub) from your Account tab, and anyone can follow your matches there — great for projecting at a venue.` },
         { q: `Do I need to create an account?`, a: `No. When you install the app a secure keypair is generated on your device. That key is your identity — back it up and keep the private part (nsec) secret.` },
         { q: `Can a helper score matches for me?`, a: `Yes. You can delegate a single match to a teammate using an ephemeral match key, so multiple people can run the scoring table without ever sharing your private key.` },
-        { q: `Which platforms are supported?`, a: `Choke is available for Android on Google Play, and as a desktop build for Linux and Windows. It's built with Flutter, so the same experience runs everywhere.` },
+        { q: `Which platforms are supported?`, a: `Choke is available for Android on Google Play, and as a desktop build for Linux, Windows and macOS. It's built with Flutter, so the same experience runs everywhere.` },
       ],
     },
     cta: {
@@ -266,6 +267,7 @@ const es: typeof en = {
       label: `También disponible para escritorio`,
       linux: `Linux`,
       windows: `Windows`,
+      macos: `macOS`,
       hint: `Descarga la última versión`,
     },
     hero: {
@@ -338,7 +340,7 @@ const es: typeof en = {
         { q: `¿Cómo ven los espectadores los resultados?`, a: `Cada combate que puntúas se publica en vivo en <a class="gold-link" href="https://bjjscore.live" target="_blank" rel="noopener">bjjscore.live</a>. Comparte la clave pública (npub) de tu pestaña Cuenta y cualquiera puede seguir tus combates ahí — ideal para proyectar en un recinto.` },
         { q: `¿Necesito crear una cuenta?`, a: `No. Al instalar la app se genera un par de claves seguro en tu dispositivo. Esa clave es tu identidad — haz una copia de seguridad y mantén en secreto la parte privada (nsec).` },
         { q: `¿Puede un ayudante puntuar combates por mí?`, a: `Sí. Puedes delegar un solo combate a un compañero mediante una clave de combate efímera, para que varias personas dirijan la mesa sin compartir nunca tu clave privada.` },
-        { q: `¿Qué plataformas son compatibles?`, a: `Choke está disponible para Android en Google Play, y como aplicación de escritorio para Linux y Windows. Está hecho con Flutter, así que la misma experiencia funciona en todas partes.` },
+        { q: `¿Qué plataformas son compatibles?`, a: `Choke está disponible para Android en Google Play, y como aplicación de escritorio para Linux, Windows y macOS. Está hecho con Flutter, así que la misma experiencia funciona en todas partes.` },
       ],
     },
     cta: {
@@ -437,6 +439,7 @@ const pt: typeof en = {
       label: `Também disponível para desktop`,
       linux: `Linux`,
       windows: `Windows`,
+      macos: `macOS`,
       hint: `Baixe a versão mais recente`,
     },
     hero: {
@@ -509,7 +512,7 @@ const pt: typeof en = {
         { q: `Como os espectadores acompanham os resultados?`, a: `Cada luta que você pontua é publicada ao vivo no <a class="gold-link" href="https://bjjscore.live" target="_blank" rel="noopener">bjjscore.live</a>. Compartilhe a chave pública (npub) da aba Conta e qualquer um pode acompanhar suas lutas lá — ótimo para projetar em um local.` },
         { q: `Preciso criar uma conta?`, a: `Não. Ao instalar o app, um par de chaves seguro é gerado no seu dispositivo. Essa chave é a sua identidade — faça um backup e mantenha a parte privada (nsec) em segredo.` },
         { q: `Um ajudante pode pontuar lutas por mim?`, a: `Sim. Você pode delegar uma única luta a um colega usando uma chave de luta efêmera, para que várias pessoas comandem a mesa sem nunca compartilhar sua chave privada.` },
-        { q: `Quais plataformas são suportadas?`, a: `O Choke está disponível para Android na Google Play, e como aplicativo de desktop para Linux e Windows. Foi feito com Flutter, então a mesma experiência funciona em todos os lugares.` },
+        { q: `Quais plataformas são suportadas?`, a: `O Choke está disponível para Android na Google Play, e como aplicativo de desktop para Linux, Windows e macOS. Foi feito com Flutter, então a mesma experiência funciona em todos os lugares.` },
       ],
     },
     cta: {
